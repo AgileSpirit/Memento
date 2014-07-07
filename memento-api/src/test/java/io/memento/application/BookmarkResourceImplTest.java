@@ -1,7 +1,7 @@
 package io.memento.application;
 
-import io.memento.domain.Bookmark;
-import io.memento.domain.BookmarkService;
+import io.memento.domain.model.Bookmark;
+import io.memento.domain.services.BookmarkService;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;

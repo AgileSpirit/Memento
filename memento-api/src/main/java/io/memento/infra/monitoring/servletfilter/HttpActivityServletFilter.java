@@ -30,7 +30,7 @@ public class HttpActivityServletFilter implements Filter {
 
         createAndRegisterMeterForStatusCode(SC_OK, "Requête traitée avec succès");
         createAndRegisterMeterForStatusCode(SC_NO_CONTENT, "Requête traitée avec succès mais pas d’information à renvoyer");
-        createAndRegisterMeterForStatusCode(SC_NOT_MODIFIED, "Document non modifié depuis la dernière requête");
+        createAndRegisterMeterForStatusCode(SC_NOT_MODIFIED, "Memento non modifié depuis la dernière requête");
         createAndRegisterMeterForStatusCode(SC_BAD_REQUEST, "La syntaxe de la requête est erronée");
         createAndRegisterMeterForStatusCode(SC_FORBIDDEN, "Le serveur a compris la requête, mais refuse de l'exécuter.");
         createAndRegisterMeterForStatusCode(SC_NOT_FOUND, "Page non trouvée");

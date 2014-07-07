@@ -1,7 +1,7 @@
 package io.memento.infra.bootstrap;
 
 import com.google.common.collect.Lists;
-import io.memento.domain.Bookmark;
+import io.memento.domain.model.Bookmark;
 import io.memento.infra.mailing.MailService;
 import io.memento.infra.repository.BookmarkRepository;
 import io.memento.infra.util.DataGenerator;

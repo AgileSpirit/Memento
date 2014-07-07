@@ -629,7 +629,7 @@
 	&lt;/tr&gt;
 	&lt;tr class="exception closed"&gt;
 		&lt;td class="error"&gt;contents&lt;/td&gt;
-		&lt;td class="error"&gt;document\.forms\[0\].searchString.focus\(\)&lt;/td&gt;
+		&lt;td class="error"&gt;memento\.forms\[0\].searchString.focus\(\)&lt;/td&gt;
 		&lt;td class="error"&gt;true&lt;/td&gt;
 	&lt;/tr&gt;&lt;tr class="exception-detail closed-detail"&gt;&lt;td colspan="3"&gt;&lt;pre&gt;__EXCEPTION__:java.lang.NullPointerException
 	at fitnesse.fixtures.ResponseExaminer.extractValueFromResponse(ResponseExaminer.java:78) [fitnesse-20140201.jar]
@@ -924,7 +924,7 @@
         
       </instructionResult>
             <instructionResult>
-        <instruction>{id='decisionTable_29_5', instruction='call', instanceName='decisionTable_29', methodName='setPattern', args=[document\.forms\[0\].searchString.focus\(\)]}</instruction>
+        <instruction>{id='decisionTable_29_5', instruction='call', instanceName='decisionTable_29', methodName='setPattern', args=[memento\.forms\[0\].searchString.focus\(\)]}</instruction>
         <slimResult></slimResult>
                 <expectation>
                     <instructionId>decisionTable_29_5</instructionId>

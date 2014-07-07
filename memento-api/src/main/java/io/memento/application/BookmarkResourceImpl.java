@@ -1,7 +1,7 @@
 package io.memento.application;
 
-import io.memento.domain.Bookmark;
-import io.memento.domain.BookmarkService;
+import io.memento.domain.model.Bookmark;
+import io.memento.domain.services.BookmarkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

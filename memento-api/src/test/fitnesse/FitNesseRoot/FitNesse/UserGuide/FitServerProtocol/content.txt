@@ -14,13 +14,13 @@ Java usage: !-java fit.FitServer [-v]-! ''host port socketTicket''
   1 open socket connection to the given ''host'' and ''port''.
   2 write the http request over the socket (do not precede with size)
   5 receive ''STATUS'' as ''INTEGER''.
- * '''Transactions''' - loops until a 0 ''INTEGER'' is read as the size of a document.
-  1 ''READ'' document from socket
-  2 process document and ''WRITE'' processed document to socket.
-   * the processes document may be written in 1 to many chunks.
+ * '''Transactions''' - loops until a 0 ''INTEGER'' is read as the size of a memento.
+  1 ''READ'' memento from socket
+  2 process memento and ''WRITE'' processed memento to socket.
+   * the processes memento may be written in 1 to many chunks.
   3 write 0 to socket an an ''INTEGER''.
-  4 ''WRITE COUNTS'' for document to socket
- * '''Closing''' - invoked by reading a document size of 0.
+  4 ''WRITE COUNTS'' for memento to socket
+ * '''Closing''' - invoked by reading a memento size of 0.
   1 close the socket.
   2 exit execution with a value of (wrongs + exceptions)
 !include FitProtocol

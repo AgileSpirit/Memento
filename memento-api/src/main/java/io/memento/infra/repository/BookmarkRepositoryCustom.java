@@ -1,6 +1,6 @@
 package io.memento.infra.repository;
 
-import io.memento.domain.Bookmark;
+import io.memento.domain.model.Bookmark;
 
 public interface BookmarkRepositoryCustom {
 

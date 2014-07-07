@@ -1,7 +1,7 @@
 package io.memento.infra.util;
 
 import com.google.common.collect.Lists;
-import io.memento.domain.Bookmark;
+import io.memento.domain.model.Bookmark;
 import io.memento.infra.repository.BookmarkRepository;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;

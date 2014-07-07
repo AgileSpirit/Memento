@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document>
+<memento>
     <body>
         <section name="Index">
             <p>
@@ -7,4 +7,4 @@
             </p>
         </section>
     </body>
-</document>
+</memento>

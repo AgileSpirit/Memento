@@ -1,5 +1,7 @@
 package io.memento.domain;
 
+import io.memento.domain.model.Bookmark;
+import io.memento.domain.services.BookmarkServiceImpl;
 import io.memento.infra.repository.BookmarkRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static io.memento.domain.Bookmark.create;
+import static io.memento.domain.model.Bookmark.create;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;

@@ -2,7 +2,7 @@ package io.memento.infra.config;
 
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
-import io.memento.infra.repository.RepositoryConfig;
+import io.memento.infra.repository.JpaRepositoryConfig;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.springframework.context.annotation.*;
@@ -18,7 +18,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories("")
 @Profile("test")
-@Import({RepositoryConfig.class})
+@Import({JpaRepositoryConfig.class})
 public class TestConfig implements EnvironmentConfig {
 
     /*

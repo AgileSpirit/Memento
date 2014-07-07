@@ -2,7 +2,7 @@ When you have really longs pages it is convenient to list a bunch of links at th
 
 The first component is called an '''Anchor'''.  Use anchors to designate locations in a page that you want to link to.  Create anchors like this:
 '''!-!anchor anchorName-!'''
-When saved, you wont see the anchors but they'll be there in the document.
+When saved, you wont see the anchors but they'll be there in the memento.
 
 Now you just need to create a link to them.  You do that with the following syntax:
 '''!-.#pageBottom-!'''

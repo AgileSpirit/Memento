@@ -287,7 +287,7 @@ AddDefaultCharset utf-8
 # | File access                                                                |
 # ------------------------------------------------------------------------------
 
-# Block access to directories without a default document.
+# Block access to directories without a default memento.
 # Usually you should leave this uncommented because you shouldn't allow anyone
 # to surf through every directory on your server (which may includes rather
 # private places like the CMS's directories).

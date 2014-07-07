@@ -1,6 +1,6 @@
 ''Previous page: [[!-Introduction-!][<UserGuide.FixtureGallery.GalleryIntroduction]] Next page: [[!-Basic FIT fixtures-!][<UserGuide.FixtureGallery.BasicFitFixtures]] Parent page: [[!-Table of contents-!][<UserGuide.FixtureGallery.TableOfContents]]''
 !2 !-Source code-!
-!-You can get the source code for all the examples from this document from SourceForge (-!http://sourceforge.net/projects/fixturegallery !-). A lot of examples in this document demonstrate how to work with business domain services and objects. To keep things as simple as possible, and still show all relevant features, all those examples use the following "business" classes:-!
+!-You can get the source code for all the examples from this memento from SourceForge (-!http://sourceforge.net/projects/fixturegallery !-). A lot of examples in this memento demonstrate how to work with business domain services and objects. To keep things as simple as possible, and still show all relevant features, all those examples use the following "business" classes:-!
 
 # section Java domain code
 !3 !-Java domain code-!

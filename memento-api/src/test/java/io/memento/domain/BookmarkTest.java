@@ -1,5 +1,6 @@
 package io.memento.domain;
 
+import io.memento.domain.model.Bookmark;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
