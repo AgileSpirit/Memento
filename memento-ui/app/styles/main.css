@@ -1,0 +1,216 @@
+/* Space out content a bit */
+body {
+    background-color: #f9fafb;
+    padding-top: 60px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+/* ========== */
+/* App styles */
+/* ========== */
+#page-header.navbar {
+    border-radius: 0;
+    border: none;
+    background-color: #3686be;
+    background-color: #205081;
+    background-color: #1db5bd;
+    background-color: #4d5a6e;
+    background-color: #444;
+    background-color: #1d508d;
+    background-color: #0a5175;
+}
+#page-header .navbar-brand,
+#page-header .navbar-brand:hover,
+#page-header .navbar-brand:focus {
+    color: white;
+}
+#page-header .navbar-collapse {
+    padding: 0;
+}
+
+#page-header .navbar-nav > li > a {
+    color: #FFF;
+    cursor: pointer;
+}
+#page-header .navbar-nav > li:hover,
+#page-header .navbar-nav > li:focus {
+    background-color: #46af65;
+    background-color: #EA6344;
+}
+#page-header .header-top {
+    background-color: #444;
+}
+
+#page-body {
+}
+
+#page-footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 100px;
+    color: #777;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+
+.btn {
+    border-radius: 0px;
+    transition: background-color 200ms;
+}
+
+.btn-add-bookmark {
+    background-color: #7DB461;
+    border: none;
+}
+
+/*
+ * Login View
+ */
+
+.login-view {}
+
+/*
+ * Bookmarks View
+ */
+
+.bookmarks-view {}
+
+.bookmarks-view .bookmarks {}
+.bookmarks-view .bookmarks .list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.bookmarks-view .bookmarks .pagination {
+    text-align: center;
+}
+
+.bookmarks-view .bookmark {
+    padding: 15px;
+    background-color: white;
+    margin: 8px 0;
+    border-left: 4px solid white;
+    cursor: pointer;
+}
+.bookmarks-view .bookmark:hover,
+.bookmarks-view .bookmark:focus {
+    border-left-color: #215f8b;
+    border-left-color: #ea6344;
+}
+.bookmarks-view .bookmark .title { font-weight: bold; }
+.bookmarks-view .bookmark .description {}
+
+.search-bar {
+    background-color: #e8eaee;
+}
+
+/*
+ * Modal
+ */
+.modal-dialog { margin-top: 49px; }
+.modal-content {  }
+.modal-header {
+    background-color: #5ab9fe;
+    background-color: #4ea3e2;
+    background-color: #fd8f56;
+    color: #ffffff;
+    border-bottom: none;
+}
+.modal-header .close {
+    color: #ffffff;
+    opacity: 0.5;
+}
+.modal-header .close:hover,
+.modal-header .close:focus {
+    opacity: 1;
+}
+.modal-footer {
+    border-top: none;
+    background-color: #f9fafb;
+}
+
+/*
+ * Buttons
+ */
+.btn{display:inline-block;padding:4px 15px;margin-bottom:0;font-size:14px;line-height:16px;color:#fff;text-align:center;vertical-align:middle;cursor:pointer;background:#000;outline:none;border:none;-webkit-border-radius:3px;border-radius:3px;height:34px;font-weight:400;margin:0}
+.btn:hover{opacity:.85;}
+.btn.active,.btn:active,.btn-group.open .btn{opacity:.9;outline:0}
+.btn.disabled,.btn[disabled]{cursor:default !important;opacity:.75 !important;;-webkit-box-shadow:none;box-shadow:none;color:rgba(255,255,255,0.5)}
+.btn-primary { background-color: #4ea3e2; }
+.btn-danger { background-color: #ea6344; }
+.btn-inverse { background-color: #28292d; }
+.btn-draft { background-color: #fd8f56; }
+.btn-success { background-color: #64b46a; }
