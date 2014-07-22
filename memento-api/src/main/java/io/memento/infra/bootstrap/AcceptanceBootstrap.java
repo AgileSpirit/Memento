@@ -15,6 +15,6 @@ public class AcceptanceBootstrap extends ApplicationBootstrap {
 
     @Override
     void bootstrap() {
-        dataGenerator.populateData();
+        dataGenerator.generateData();
     }
 }

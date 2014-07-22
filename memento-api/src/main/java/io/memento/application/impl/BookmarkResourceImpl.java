@@ -1,5 +1,9 @@
-package io.memento.application;
+package io.memento.application.impl;
 
+import io.memento.application.BadRequestParametersException;
+import io.memento.application.BookmarkNotFoundException;
+import io.memento.application.BookmarkResource;
+import io.memento.application.BookmarkSearchResponse;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
 import org.slf4j.Logger;
@@ -57,6 +61,7 @@ public class BookmarkResourceImpl implements BookmarkResource {
         BookmarkSearchResponse response = new BookmarkSearchResponse();
         response.setQuery(query);
         response.setOffset(offset);
+        response.setSize(size);
         response.setTotalItems(bookmarkService.count(query));
         response.setBookmarks(bookmarkService.find(query, offset, size));
         return response;

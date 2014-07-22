@@ -1,0 +1,41 @@
+<nav id="navigation">
+    <ul class="links">
+        <li class="link"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+        <hr>
+        <li class="link" ng-click="openEditor()"><a><span class="glyphicon glyphicon-plus"></span></a></li>
+        <hr>
+        <li class="link"><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+        <li class="link"><a href="#"><span class="glyphicon glyphicon-file"></span></a></li>
+        <li class="link"><a href="#"><span class="glyphicon glyphicon-link"></span></a></li>
+        <hr>
+        <li class="link"><a href="#"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li class="link"><a href="#"><span class="glyphicon glyphicon-off"></span></a></li>
+    </ul>
+</nav>
+<section id="dashboard" >
+    <div class="mask" ng-show="$root.isCurrentView('EDITOR')" ng-click="$root.closeEditor()"></div>
+    <div class="scrollable">
+        <ul class="documents">
+            <li ng-repeat="document in documents">
+                <div class="document"
+                     ng-class="{'bookmark': document.type === 'BOOKMARK', 'note': document.type === 'NOTE'}"
+                     ng-click="showMask()">
+                    <div class="icon">
+                        <span class="glyphicon" ng-class="{'glyphicon-link': document.type === 'BOOKMARK', 'glyphicon-file': document.type === 'NOTE'}"></span>
+                    </div>
+                    <div class="content">
+                        <div class="title">
+                            <a href="">{{document.title}}</a>
+                        </div>
+                        <div class="description">
+                            <p>{{document.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<section id="editor" ng-show="$root.isCurrentView('EDITOR')">
+    <div ng-include="'/views/editor.html'"></div>
+</section>

@@ -15,7 +15,7 @@ public class ProductionBootstrap extends ApplicationBootstrap {
 
     @Override
     void bootstrap() {
-        dataGenerator.populateData();
+        dataGenerator.generateData();
         dataGenerator.retrieveAndDisplayAllData();
     }
 }

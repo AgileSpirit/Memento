@@ -1,0 +1,44 @@
+<form role="form" ng-submit="saveDocument()" ng-controller="DocumentEditorCtrl">
+    <div class="header"></div>
+
+    <div class="tags">&nbsp;</div>
+
+    <div class="tabs"></div>
+
+    <div class="form">
+        <!-- Type -->
+        <div class="form-group">
+            <select id="type" class="form-control"
+                    ng-model="selectedType" ng-options="type.label for type in documentTypes"></select>
+        </div>
+
+        <!-- Title -->
+        <div class="form-group">
+            <input id="title" type="title" class="form-control" placeholder="Title"
+                   ng-model="document.title">
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <textarea id="description" class="form-control" rows="3" placeholder="Description"
+                      ng-model="document.description"></textarea>
+        </div>
+
+        <!-- Bookmark -->
+        <div class="form-group">
+            <input id="url" type="text" class="form-control" placeholder="URL"
+                   ng-model="document.url" ng-show="isBookmark()">
+        </div>
+
+        <!-- Note -->
+        <div class="form-group">
+            <textarea id="content" type="email" class="form-control" rows="6" placeholder="Content"
+                      ng-model="document.content" ng-show="isNote()"></textarea>
+        </div>
+
+        <div class="text-right">
+            <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+            <input type="submit" class="btn btn-primary" value="Validate">
+        </div>
+    </div>
+</form>

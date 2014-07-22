@@ -3,22 +3,20 @@ package io.memento.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 
 @JsonIgnoreProperties({"new"})
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="TYPE", discriminatorType = DiscriminatorType.STRING)
-public abstract class Memento extends AbstractPersistable<Long> {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.STRING)
+public abstract class Document extends AbstractPersistable<Long> {
 
-    @Column(nullable = false, length = 1024)
+    @Column(nullable = true, length = 1024)
     private String title;
 
-    @Column(nullable = false, length = 1024)
+    @Column(nullable = true, length = 1024)
     private String description;
 
     @Column(nullable = false)
@@ -53,6 +51,7 @@ public abstract class Memento extends AbstractPersistable<Long> {
 
     public void setCreationDate(DateTime creationDate) {
         this.creationDate = creationDate;
+        this.modificationDate = creationDate;
     }
 
     public DateTime getModificationDate() {

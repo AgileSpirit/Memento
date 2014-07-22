@@ -35,7 +35,7 @@ public class ExampleResource {
      *
      * @return a redirection to the JSP page WEB-INF/jsp/hello-world.jsp
      */
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public ModelAndView goToHelloWorld() {
         return new ModelAndView("hello-world");
     }

@@ -15,6 +15,7 @@ public class BookmarkSearchResponse {
     private long totalItems;
     private List<Bookmark> bookmarks;
     private int offset;
+    private int size;
 
     public String getQuery() {
         return query;
@@ -46,5 +47,13 @@ public class BookmarkSearchResponse {
 
     public void setOffset(int offset) {
         this.offset = offset;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

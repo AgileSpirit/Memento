@@ -4,8 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue(value = DocumentType.Values.NOTE)
-public class Note extends Memento {
+public class Note extends Document {
 
+    @Column(nullable = true, length = 1024)
     private String content;
 
     public String getContent() {
@@ -21,4 +22,11 @@ public class Note extends Memento {
         return DocumentType.Values.NOTE;
     }
 
+    public static Note create(String title, String description, String content) {
+        Note note = new Note();
+        note.setTitle(title);
+        note.setDescription(description);
+        note.setContent(content);
+        return note;
+    }
 }

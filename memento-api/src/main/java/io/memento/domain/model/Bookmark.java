@@ -1,12 +1,6 @@
 package io.memento.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -15,12 +9,12 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue(value = DocumentType.Values.BOOKMARK)
-public class Bookmark extends Memento {
+public class Bookmark extends Document {
 
     /**
      * The URL pointed by the bookmark.
      */
-    @Column(nullable = false, length = 1024)
+    @Column(nullable = true, length = 1024)
     private String url;
 
     /**
@@ -31,11 +25,11 @@ public class Bookmark extends Memento {
      * @param description the description of the bookmark
      * @return the created bookmark
      */
-    public static Bookmark create(String url, String title, String description) {
+    public static Bookmark create(String title, String description, String url) {
         Bookmark bookmark = new Bookmark();
-        bookmark.setUrl(url);
         bookmark.setTitle(title);
         bookmark.setDescription(description);
+        bookmark.setUrl(url);
         return bookmark;
     }
 

@@ -1,7 +1,11 @@
 /* Space out content a bit */
 body {
-    background-color: #f9fafb;
-    padding-top: 60px;
+    background-color: #e8eaee;
+}
+
+ol, ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -214,3 +218,178 @@ body {
 .btn-inverse { background-color: #28292d; }
 .btn-draft { background-color: #fd8f56; }
 .btn-success { background-color: #64b46a; }
+
+/* -------------- */
+/* Navigation bar */
+/* -------------- */
+
+#navigation {
+    height: 100%;
+    width: 80px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #4d5a6e;
+}
+#navigation hr {
+    border-color: #425164;
+    margin: 8px 0;
+}
+.links {  }
+.link {
+    height: 50px;
+    border-radius: 3px;
+    transition: 0.1s;
+    padding: 10px;
+    padding-top: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+}
+.link:first-child {
+    margin-top: 10px;
+}
+.link a {
+    color: #ffffff;
+    width: 40px;
+}
+
+.link:hover,
+.link:focus {
+    background-color: #EA6344;
+}
+
+/* ---------------- */
+/* Scrollable panel */
+/* ---------------- */
+
+.scrollable {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-style: marquee;
+}
+
+/* -------------- */
+/* Dashboard view */
+/* -------------- */
+
+#dashboard {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 700px;
+    background-color: #e8eaee;
+    background-color: #f9fafb;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.documents {
+}
+
+.document {
+    margin: 10px 0;
+    background-color: #fff;
+    padding: 15px 30px;
+    border-left: 5px solid #fff;
+    cursor: pointer;
+    position: relative;
+}
+.document:hover,
+.document:focus {
+    border-left-color: #ea6344;
+}
+
+.document .content {
+    padding-left: 40px;
+}
+.document .title {  }
+.document .description {  }
+
+.document .icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    content: ' ';
+    position: absolute;
+    left: 20px;
+    padding-top: 10px;
+    color: #FFF;
+    text-align: center;
+}
+.documents > li:first-child .document {
+    margin-top: 0;
+}
+
+/*
+.note:hover,
+.note:focus {
+    border-left-color: #fd8f56;
+}
+*/
+.note .icon {
+    background-color: #fd8f56;
+/*
+    background-color: #ffd700;
+    background-color: #46af65;
+*/
+}
+
+.bookmark .icon {
+    background-color: #4ea3e2;
+}
+
+.mask {
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: inherit;
+    z-index: 199;
+    cursor: pointer;
+}
+.mask:hover,
+.mask:focus {
+    background: rgba(0,0,0,0.35);
+}
+
+/* -------------- */
+/* Dashboard view */
+/* -------------- */
+
+#editor {
+    position: absolute;
+    width: 800px;
+    right: 0;
+    height: 100%;
+    background-color: #fff;
+    z-index: 200;
+}
+
+#editor .header {
+    min-height: 70px;
+    height: 70px;
+    max-height: 70px;
+    background-color: #4ea3e2;
+    margin: 0;
+    border: none;
+}
+
+#editor .tags {
+    background-color: #5ab9fe;
+    min-height: 60px;
+}
+
+#editor .tabs {
+
+}
+
+#editor .form {
+
+}

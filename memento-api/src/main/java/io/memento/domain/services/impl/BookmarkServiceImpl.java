@@ -1,8 +1,9 @@
-package io.memento.domain.services;
+package io.memento.domain.services.impl;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
+import io.memento.domain.services.BookmarkService;
 import io.memento.infra.repository.BookmarkRepository;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Sort;

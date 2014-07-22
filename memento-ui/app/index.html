@@ -21,7 +21,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-view></div>
+    <div id="app">
+        <div ng-view></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--
@@ -67,10 +69,16 @@
         <script src="scripts/controllers/header.js"></script>
         <script src="scripts/controllers/bookmarks.js"></script>
         <script src="scripts/controllers/error.js"></script>
+        <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/editor.js"></script>
+        <script src="scripts/controllers/document-editor.js"></script>
         <!-- Services-->
         <script src="scripts/services/bookmarkservice.js"></script>
+        <script src="scripts/services/documentservice.js"></script>
         <!-- Directives -->
         <!-- Filters -->
+        <script src="scripts/controllers/dashboard.js"></script>
+        <script src="scripts/controllers/editor.js"></script>
         <!-- endbuild -->
 </body>
 </html>
