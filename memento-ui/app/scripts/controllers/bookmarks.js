@@ -8,7 +8,7 @@
  * Controller of the mementoApp
  */
 angular.module('mementoApp')
-    .controller('BookmarksCtrl', ['$rootScope', '$scope', '$window', 'BookmarkService', function ($rootScope, $scope, $window, bookmarkService) {
+    .controller('BookmarksCtrl', ['$rootScope', '$scope', '$window', 'ApiService', function ($rootScope, $scope, $window, apiService) {
 
         // Model data
         $scope.searchQuery = '';
@@ -21,7 +21,7 @@ angular.module('mementoApp')
         // Initialize
         function loadBookmarks(query, page, size) {
             var offset = pageToOffset(page, $scope.pageSize);
-            bookmarkService.search({'query' : query, 'offset': offset , 'size': size}, function(response) {
+            apiService.search({'query' : query, 'offset': offset , 'size': size}, function(response) {
                 $scope.bookmarks = response.bookmarks;
                 $scope.searchQuery = response.query;
                 $scope.totalItems = response.totalItems;

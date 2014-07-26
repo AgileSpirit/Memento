@@ -1,5 +1,7 @@
 package io.memento.application;
 
+import io.memento.application.exceptions.BadRequestParametersException;
+import io.memento.application.exceptions.BookmarkNotFoundException;
 import io.memento.application.impl.BookmarkResourceImpl;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
@@ -54,17 +56,7 @@ public class BookmarkResourceImplTest {
 
     @Test
     public void getBookmarkByIdShouldBeOk() {
-        resource.getBookmarkById(SOME_ID);
-    }
-
-    /*
-     * BookmarkResourceImpl#getAllBookmarks
-     */
-
-    @Test
-    public void getAllBookmarksShouldBeOk() {
-        // Empty test because there is no logic
-        resource.getAllBookmarks();
+        resource.getBookmark(SOME_ID);
     }
 
     /*

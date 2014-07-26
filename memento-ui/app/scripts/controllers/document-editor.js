@@ -8,8 +8,8 @@
  * Controller of the mementoUiApp
  */
 angular.module('mementoApp')
-    .controller('DocumentEditorCtrl', ['$rootScope', '$scope', '$location', 'DocumentService', 'BookmarkService',
-        function ($rootScope, $scope, $location, documentService, bookmarkService) {
+    .controller('DocumentEditorCtrl', ['$rootScope', '$scope', '$location', 'ApiService',
+        function ($rootScope, $scope, $location, apiService) {
 
         $scope.documentTypes = [
             { label: 'Bookmark', value: 'BOOKMARK'},
@@ -29,9 +29,10 @@ angular.module('mementoApp')
                 bookmark.url = $scope.document.url;
 
                 // Perform
-                bookmarkService.save(bookmark,
+                apiService.saveBookmark(bookmark,
                     function(successResult) {
-                        $location.path('/');
+                        $rootScope.closeEditor();
+                        $rootScope.$emit('refreshDocumentList');
                     },
                     function(errorResult) {
                         console.error('An error occurred during saving');
@@ -39,8 +40,17 @@ angular.module('mementoApp')
             } else if ($scope.isNote()) {
                 var note = {};
                 note.title = $scope.document.title;
-                note.description = $scope.document.description;
+                note.description = '';
                 note.content = $scope.document.content;
+                // Perform
+                apiService.saveNote(note,
+                    function(successResult) {
+                        $rootScope.closeEditor();
+                        $rootScope.$emit('refreshDocumentList');
+                    },
+                    function(errorResult) {
+                        console.error('An error occurred during saving');
+                    });
             } else {
                 // ERROR
             }

@@ -381,15 +381,33 @@ ol, ul {
     border: none;
 }
 
-#editor .tags {
-    background-color: #5ab9fe;
-    min-height: 60px;
-}
-
+/* Tabs */
 #editor .tabs {
-
+    background-color: #5ab9fe;
+}
+#editor .tab {
+    display: inline-block;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px 20px;
+    margin: 20px 5px 0 5px;
+    background-color: rgba(0, 0, 0, 0.09);
+    color: #fff;
+    cursor: pointer;
+}
+#editor .tab:first-child {
+    margin-left: 15px;
+}
+#editor .tab:hover,
+#editor .tab:focus {
+   background-color: rgba(255,255,255,0.25);
+}
+#editor .tab.active {
+    background-color: #fff;
+    color: #333;
 }
 
+/* Form */
 #editor .form {
-
+    padding: 20px 15px;
 }

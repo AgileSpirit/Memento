@@ -8,7 +8,7 @@
  * Controller of the mementoUiApp
  */
 angular.module('mementoApp')
-  .controller('DashboardCtrl', ['$rootScope', '$scope', '$window', 'DocumentService', function ($rootScope, $scope, $window, documentService) {
+  .controller('DashboardCtrl', ['$rootScope', '$scope', '$window', 'ApiService', function ($rootScope, $scope, $window, apiService) {
         // Model data
         $scope.searchQuery = '';
         $scope.currentPage = 1;
@@ -20,7 +20,7 @@ angular.module('mementoApp')
         // Initialize
         function loadDocuments(query, page, size) {
             var offset = pageToOffset(page, $scope.pageSize);
-            documentService.search({'query' : query, 'offset': offset , 'size': size}, function(response) {
+            apiService.findDocuments({'query' : query, 'offset': offset , 'size': size}, function(response) {
                 $scope.documents = response.documents;
                 $scope.searchQuery = response.query;
                 $scope.totalItems = response.totalItems;
@@ -43,12 +43,23 @@ angular.module('mementoApp')
             loadDocuments($scope.searchQuery, 1, $scope.pageSize);
         };
 
+        $scope.getDocumentExcerpt = function(document) {
+            switch(document.type) {
+                case 'BOOKMARK':
+                    return document.description;
+                case 'NOTE':
+                    return document.content;
+                default:
+                    return '';
+            }
+        };
+
         $scope.getDocumentClass = function(document) {
           switch(document) {
               case 'BOOKMARK':
                   return 'document bookmark';
               case 'NOTE':
-                  return 'documnet note';
+                  return 'document note';
               default:
                   return 'document';
           }

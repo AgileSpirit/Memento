@@ -186,12 +186,13 @@
         <!-- MONGODB -->
         <!-- ======= -->
 
+<!--
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
             <version>${spring-data-mongodb.version}</version>
         </dependency>
-        <!-- mongodb java driver -->
+        &lt;!&ndash; mongodb java driver &ndash;&gt;
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
@@ -202,6 +203,7 @@
             <artifactId>cglib</artifactId>
             <version>${cglib.version}</version>
         </dependency>
+-->
 
         <!-- ================= -->
         <!-- REST WEB SERVICES -->

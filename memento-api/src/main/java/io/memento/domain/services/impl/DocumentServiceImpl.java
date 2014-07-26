@@ -3,27 +3,32 @@ package io.memento.domain.services.impl;
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Document;
 import io.memento.domain.services.DocumentService;
-import io.memento.infra.repository.DocumentRepository;
-import org.springframework.data.domain.Sort;
+import io.memento.infra.repository.document.DocumentRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
-public class DocumentServiceImpl implements DocumentService {
+@Named(value = "documentService")
+public class DocumentServiceImpl implements DocumentService<Document> {
 
     @Inject
     private DocumentRepository documentRepository;
 
     @Override
-    public List<Document> findAll() {
-        final List<Sort.Order> orders = new ArrayList<>();
-        orders.add(new Sort.Order(Sort.Direction.DESC, "creationDate"));
-        orders.add(new Sort.Order(Sort.Direction.DESC, "modificationDate"));
+    public Document findOne(Long id) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
-        return Lists.newArrayList(documentRepository.findAll(new Sort(orders)));
+    @Override
+    public Document save(Document bookmark) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Document update(Document bookmark) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -37,6 +42,11 @@ public class DocumentServiceImpl implements DocumentService {
             documents = Lists.newArrayList(data);
         }
         return documents;
+    }
+
+    @Override
+    public void delete(Long id) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

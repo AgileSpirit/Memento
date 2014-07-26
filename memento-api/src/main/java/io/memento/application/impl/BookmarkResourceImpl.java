@@ -1,9 +1,9 @@
 package io.memento.application.impl;
 
-import io.memento.application.BadRequestParametersException;
-import io.memento.application.BookmarkNotFoundException;
+import io.memento.application.exceptions.ApplicationException;
+import io.memento.application.exceptions.BadRequestParametersException;
+import io.memento.application.exceptions.BookmarkNotFoundException;
 import io.memento.application.BookmarkResource;
-import io.memento.application.BookmarkSearchResponse;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
 import org.slf4j.Logger;
@@ -13,11 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.util.List;
 
-/**
- * Example of REST Web Services with Spring-MVC
- */
 @Controller
 @RequestMapping("/api/bookmarks")
 public class BookmarkResourceImpl implements BookmarkResource {
@@ -36,60 +32,98 @@ public class BookmarkResourceImpl implements BookmarkResource {
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public Bookmark getBookmarkById(@PathVariable Long id) {
-        return bookmarkService.findOne(id);
-    }
+    public Bookmark getBookmark(@PathVariable Long id) {
+        // Log
+        LOGGER.info("getBookmark(" + id + ")");
 
-    @Override
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<Bookmark> getAllBookmarks() {
-        return bookmarkService.findAll();
-    }
+        // Check input
+        if (id == null) {
+            throw new BadRequestParametersException("Missing bookmark ID");
+        }
 
-    @Override
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeBookmark(@PathVariable Long id) {
-        bookmarkService.delete(id);
-    }
+        // Process
+        Bookmark bookmark = bookmarkService.findOne(id);
 
-    @Override
-    @RequestMapping(method = RequestMethod.GET, value = "/search", produces="application/json")
-    @ResponseBody
-    public BookmarkSearchResponse searchBookmarks(@RequestParam("q") String query, @RequestParam("o") int offset, @RequestParam("s") int size) {
-        BookmarkSearchResponse response = new BookmarkSearchResponse();
-        response.setQuery(query);
-        response.setOffset(offset);
-        response.setSize(size);
-        response.setTotalItems(bookmarkService.count(query));
-        response.setBookmarks(bookmarkService.find(query, offset, size));
-        return response;
+        // Check output
+        if (bookmark == null) {
+            throw new BookmarkNotFoundException();
+        }
+
+        // Return
+        return bookmark;
     }
 
     @Override
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Bookmark saveBookmark(@RequestBody Bookmark bookmark) {
-        checkParametersForCreateElseThrowsException(bookmark);
-        return bookmarkService.save(bookmark);
+        // Log
+        LOGGER.info("saveBookmark([bookmark.id] " + bookmark.getId() + " )");
+
+        // Check Input
+        checkParametersForCreate(bookmark);
+
+        // Process
+        Bookmark entity = bookmarkService.save(bookmark);
+
+        // Check Output
+        if (entity == null) {
+            throw new ApplicationException();
+        }
+
+        // Return
+        return entity;
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Bookmark updateBookmark(@PathVariable Long id, @RequestBody Bookmark bookmark) {
-        checkParametersForUpdateElseThrowsException(id, bookmark);
+        // Log
+        LOGGER.info("updateBookmark(" + bookmark.getId() + " )");
 
+        // Check Input
+        checkParametersForUpdate(id, bookmark);
         Bookmark old = bookmarkService.findOne(id);
         if (old == null) {
             throw new BookmarkNotFoundException();
         }
 
-        return bookmarkService.update(bookmark);
+        // Process
+        Bookmark entity = bookmarkService.update(bookmark);
+
+        // Check Output
+        if (entity == null) {
+            throw new ApplicationException();
+        }
+
+        // Return
+        return entity;
     }
 
-    private void checkBookmarkForCreateOrUpdateElseThrowsException(Bookmark bookmark) {
+    @Override
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeBookmark(@PathVariable Long id) {
+        // Log
+        LOGGER.info("removeBookmark(" + id + ")");
+
+        // Check input
+        if (id == null) {
+            throw new BadRequestParametersException("Missing bookmark ID");
+        }
+
+        // Process
+        bookmarkService.delete(id);
+    }
+
+    /*
+     * -----------------------------------------------------------------------
+     * UTILS
+     * -----------------------------------------------------------------------
+     */
+
+    private void checkBookmarkForCreateOrUpdate(Bookmark bookmark) {
         if (bookmark == null) {
             throw new BadRequestParametersException("Given bookmark must not be null");
         }
@@ -101,8 +135,8 @@ public class BookmarkResourceImpl implements BookmarkResource {
         }
     }
 
-    private void checkParametersForCreateElseThrowsException(Bookmark bookmark) {
-        checkBookmarkForCreateOrUpdateElseThrowsException(bookmark);
+    private void checkParametersForCreate(Bookmark bookmark) {
+        checkBookmarkForCreateOrUpdate(bookmark);
 
         if (bookmark.getId() != null) {
             throw new BadRequestParametersException("Given bookmark's ID must be null");
@@ -112,8 +146,8 @@ public class BookmarkResourceImpl implements BookmarkResource {
         }
     }
 
-    private final void checkParametersForUpdateElseThrowsException(Long id, Bookmark bookmark) {
-        checkBookmarkForCreateOrUpdateElseThrowsException(bookmark);
+    private void checkParametersForUpdate(Long id, Bookmark bookmark) {
+        checkBookmarkForCreateOrUpdate(bookmark);
 
         if (id == null) {
             throw new BadRequestParametersException("Given ID must not be null");
@@ -121,7 +155,7 @@ public class BookmarkResourceImpl implements BookmarkResource {
         if (bookmark.getId() == null) {
             throw new BadRequestParametersException("Given bookmark's ID must not be null");
         }
-        if (id != bookmark.getId()) {
+        if (id.equals(bookmark.getId())) {
             throw new BadRequestParametersException("Given ID and bookmark.id must be equal");
         }
         if (bookmark.getCreationDate() == null) {

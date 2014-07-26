@@ -1,15 +1,21 @@
 package io.memento.domain.services;
 
+import io.memento.domain.model.Bookmark;
 import io.memento.domain.model.Document;
 
 import java.util.List;
 
-public interface DocumentService {
+public interface DocumentService<T extends Document> {
 
-    List<Document> findAll();
+    T findOne(Long id);
 
-    List<Document> find(String query, int offset, int size);
+    T save(T bookmark);
+
+    T update(T bookmark);
+
+    List<T> find(String query, int offset, int size);
+
+    void delete(Long id);
 
     Long count(String query);
-
 }

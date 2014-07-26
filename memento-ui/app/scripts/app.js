@@ -16,19 +16,18 @@ angular
         'ngRoute',
         'ngSanitize',
         'ngTouch',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'textAngular'
     ])
     .config(function ($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
-            .when('/about', { templateUrl: 'views/about.html', controller: 'AboutCtrl' })
-            .when('/login', { templateUrl: 'views/login.html', controller: 'LoginCtrl' })
-            .when('/main', { templateUrl: 'views/main.html', controller: 'MainCtrl' })
-            .when('/bookmarks', { templateUrl: 'views/bookmarks.html', controller: 'BookmarksCtrl' })
-            .when('/error', { templateUrl: 'views/error.html', controller: 'ErrorCtrl' })
-            .when('/dashboard', { templateUrl: 'views/dashboard.html', controller: 'DashboardCtrl' })
-            .when('/editor', {
-              templateUrl: 'views/editor.html',
-              controller: 'EditorCtrl'
+            .when('/about',     { templateUrl: 'views/about.html',      controller: 'AboutCtrl' })
+            .when('/login',     { templateUrl: 'views/login.html',      controller: 'LoginCtrl' })
+            .when('/main',      { templateUrl: 'views/main.html',       controller: 'MainCtrl' })
+            .when('/bookmarks', { templateUrl: 'views/bookmarks.html',  controller: 'BookmarksCtrl' })
+            .when('/error',     { templateUrl: 'views/error.html',      controller: 'ErrorCtrl' })
+            .when('/dashboard', { templateUrl: 'views/dashboard.html',  controller: 'DashboardCtrl' })
+            .when('/editor',    { templateUrl: 'views/editor.html',     controller: 'EditorCtrl'
             })
             .otherwise({ redirectTo: '/bookmarks' });
 

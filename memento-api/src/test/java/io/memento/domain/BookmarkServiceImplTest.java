@@ -2,7 +2,7 @@ package io.memento.domain;
 
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.impl.BookmarkServiceImpl;
-import io.memento.infra.repository.BookmarkRepository;
+import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

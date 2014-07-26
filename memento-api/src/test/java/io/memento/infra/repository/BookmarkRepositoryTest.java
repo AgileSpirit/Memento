@@ -3,6 +3,7 @@ package io.memento.infra.repository;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
+import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.joda.time.DateTime;
 import org.junit.Test;
 

@@ -4,7 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
-import io.memento.infra.repository.BookmarkRepository;
+import io.memento.domain.services.DocumentService;
+import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -15,9 +16,6 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Application service used to demostrate DDD application service and Mockito usage.
- */
 @Named
 public class BookmarkServiceImpl implements BookmarkService {
 

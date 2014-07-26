@@ -2,7 +2,7 @@ package io.memento.infra.scheduler;
 
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
-import io.memento.infra.repository.BookmarkRepository;
+import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
