@@ -359,9 +359,9 @@ ol, ul {
     background: rgba(0,0,0,0.35);
 }
 
-/* -------------- */
-/* Dashboard view */
-/* -------------- */
+/* ----------- */
+/* Editor view */
+/* ----------- */
 
 #editor {
     position: absolute;
@@ -411,3 +411,17 @@ ol, ul {
 #editor .form {
     padding: 20px 15px;
 }
+
+/* ------------- */
+/* Bookmark view */
+/* ------------- */
+
+#bookmark {
+    position: absolute;
+    width: 800px;
+    right: 0;
+    height: 100%;
+    background-color: #fff;
+    z-index: 200;
+}
+

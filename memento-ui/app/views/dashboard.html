@@ -13,13 +13,13 @@
     </ul>
 </nav>
 <section id="dashboard" >
-    <div class="mask" ng-show="$root.isCurrentView('EDITOR')" ng-click="$root.closeEditor()"></div>
+    <div class="mask" ng-hide="$root.isCurrentView('DASHBOARD')" ng-click="$root.closeEditor()"></div>
     <div class="scrollable">
         <ul class="documents">
             <li ng-repeat="document in documents">
                 <div class="document"
                      ng-class="{'bookmark': document.type === 'BOOKMARK', 'note': document.type === 'NOTE'}"
-                     ng-click="showMask()">
+                     ng-click="showBookmark(document)">
                     <div class="icon">
                         <span class="glyphicon" ng-class="{'glyphicon-link': document.type === 'BOOKMARK', 'glyphicon-file': document.type === 'NOTE'}"></span>
                     </div>
@@ -35,6 +35,12 @@
                 </div>
             </li>
         </ul>
+    </div>
+</section>
+<section id="bookmark" ng-show="$root.isCurrentView('BOOKMARK')">
+    <div class="scrollable">
+        <h1 class="title">{{bookmark.title}}</h1>
+        <div class="content" ng-bind-html="bookmark.content"></div>
     </div>
 </section>
 <section id="editor" ng-show="$root.isCurrentView('EDITOR')">

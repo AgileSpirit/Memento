@@ -65,13 +65,11 @@ angular.module('mementoApp')
           }
         };
 
-        $scope.showMask = function() {
-            $scope.maskVisible = true;
+        $scope.showBookmark = function(document) {
+            $scope.bookmark = document;
+            $rootScope.selectView('BOOKMARK');
         };
 
-        $scope.hideMask = function() {
-            $scope.maskVisible = false;
-        };
         /**
          * Handle the event emitted by DocumentFormCtrl controller
          */
@@ -84,7 +82,6 @@ angular.module('mementoApp')
          */
         function initialize() {
             loadDocuments($scope.searchQuery, $scope.currentPage, $scope.pageSize);
-            $scope.hideMask();
         }
         initialize();
 

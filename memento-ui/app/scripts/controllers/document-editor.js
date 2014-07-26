@@ -33,6 +33,7 @@ angular.module('mementoApp')
                     function(successResult) {
                         $rootScope.closeEditor();
                         $rootScope.$emit('refreshDocumentList');
+                        resetDocument();
                     },
                     function(errorResult) {
                         console.error('An error occurred during saving');
@@ -47,6 +48,7 @@ angular.module('mementoApp')
                     function(successResult) {
                         $rootScope.closeEditor();
                         $rootScope.$emit('refreshDocumentList');
+                        resetDocument();
                     },
                     function(errorResult) {
                         console.error('An error occurred during saving');
@@ -67,5 +69,9 @@ angular.module('mementoApp')
         $scope.cancel = function() {
             $rootScope.selectView('DASHBOARD');
         };
+
+        function resetDocument() {
+            $scope.document = {};
+        }
 
     }]);

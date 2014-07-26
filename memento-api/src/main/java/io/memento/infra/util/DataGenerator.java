@@ -35,14 +35,14 @@ public class DataGenerator {
 
     public void generateNotes() {
         List<Note> notes = Lists.newArrayList();
-        notes.add(newNote("[Note] [CNP] [IQS] Choses à faire", "", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "2014-07-22"));
-        notes.add(newNote("[Note] Conflans Sainte-Honorine", "", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2014-01-01"));
-        notes.add(newNote("[Note] [ING] [HomeLoan] [Simulateurs] Brouillon de mail", "", "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.", "2013-01-01"));
+        notes.add(newNote("[Note] [CNP] [IQS] Choses à faire", "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "2014-07-22"));
+        notes.add(newNote("[Note] Conflans Sainte-Honorine", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "2014-01-01"));
+        notes.add(newNote("[Note] [ING] [HomeLoan] [Simulateurs] Brouillon de mail", "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.", "2013-01-01"));
         noteRepository.save(notes);
     }
 
-    private Note newNote(String title, String description, String content, String date) {
-        Note note = Note.create(title, description, content);
+    private Note newNote(String title, String content, String date) {
+        Note note = Note.create(title, content);
         if (date != null) {
             DateTime time = new DateTime(date);
             note.setCreationDate(time);

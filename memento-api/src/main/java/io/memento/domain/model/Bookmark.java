@@ -11,11 +11,18 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = DocumentType.Values.BOOKMARK)
 public class Bookmark extends Document {
 
-    /**
-     * The URL pointed by the bookmark.
+    /*
+     * ATTRIBUTES
      */
     @Column(nullable = true, length = 1024)
     private String url;
+
+    @Column(nullable = true, length = 1024)
+    private String description;
+
+    /*
+     * FACTORY METHODS
+     */
 
     /**
      * Factory method to instance a bookmark.
@@ -33,6 +40,15 @@ public class Bookmark extends Document {
         return bookmark;
     }
 
+    /*
+     * GETTERS & SETTERS
+     */
+
+    @Override
+    public String getType() {
+        return DocumentType.Values.BOOKMARK;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -41,8 +57,12 @@ public class Bookmark extends Document {
         this.url = url;
     }
 
-    @Override
-    public String getType() {
-        return DocumentType.Values.BOOKMARK;
+    public String getDescription() {
+        return description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

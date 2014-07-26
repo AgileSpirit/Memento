@@ -1,11 +1,7 @@
 package io.memento.domain.model;
 
-/**
- * User: OCTO-JBU
- * Date: 08/07/2014
- * Time: 00:28
- */
 public enum DocumentType {
+
     BOOKMARK(Values.BOOKMARK), //
     NOTE(Values.NOTE), //
     FILE(Values.FILE), //

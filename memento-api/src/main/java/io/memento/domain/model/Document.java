@@ -13,11 +13,16 @@ import javax.persistence.*;
 @DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Document extends AbstractPersistable<Long> {
 
+    /*
+     * ATTRIBUTES
+     */
+
     @Column(nullable = true, length = 1024)
     private String title;
 
-    @Column(nullable = true, length = 1024)
-    private String description;
+    @Lob
+    @Column(nullable = true, length = Integer.MAX_VALUE)
+    private String content;
 
     @Column(nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
@@ -26,6 +31,10 @@ public abstract class Document extends AbstractPersistable<Long> {
     @Column(nullable = true)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime modificationDate;
+
+    /*
+     * GETTERS & SETTERS
+     */
 
     public abstract String getType();
 
@@ -37,12 +46,12 @@ public abstract class Document extends AbstractPersistable<Long> {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public DateTime getCreationDate() {

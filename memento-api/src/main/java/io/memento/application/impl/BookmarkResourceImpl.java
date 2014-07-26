@@ -61,7 +61,7 @@ public class BookmarkResourceImpl implements BookmarkResource {
         LOGGER.info("saveBookmark([bookmark.id] " + bookmark.getId() + " )");
 
         // Check Input
-        checkParametersForCreate(bookmark);
+        // checkParametersForCreate(bookmark);
 
         // Process
         Bookmark entity = bookmarkService.save(bookmark);
@@ -83,7 +83,7 @@ public class BookmarkResourceImpl implements BookmarkResource {
         LOGGER.info("updateBookmark(" + bookmark.getId() + " )");
 
         // Check Input
-        checkParametersForUpdate(id, bookmark);
+        // checkParametersForUpdate(id, bookmark);
         Bookmark old = bookmarkService.findOne(id);
         if (old == null) {
             throw new BookmarkNotFoundException();

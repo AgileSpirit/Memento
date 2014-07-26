@@ -5,11 +5,15 @@ import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
 import io.memento.domain.services.DocumentService;
+import io.memento.infra.readability.ReadabilityResponse;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,6 +22,8 @@ import java.util.List;
 
 @Named
 public class BookmarkServiceImpl implements BookmarkService {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(BookmarkServiceImpl.class);
 
     @Inject
     private BookmarkRepository bookmarkRepository;
@@ -60,6 +66,21 @@ public class BookmarkServiceImpl implements BookmarkService {
     @Timed
     public Bookmark save(Bookmark bookmark) {
         bookmark.setCreationDate(new DateTime());
+
+        // https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=aadef94fc0e970862ac00067cf09717d111fa788
+        // Readability token : aadef94fc0e970862ac00067cf09717d111fa788
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://www.readability.com/api/content/v1/parser";
+        url += "?url=" + bookmark.getUrl();
+        url += "&token=" + "aadef94fc0e970862ac00067cf09717d111fa788";
+        LOGGER.info("Call Readability API");
+        LOGGER.info("URL = " + url);
+        ReadabilityResponse response = restTemplate.getForObject(url, ReadabilityResponse.class);
+        if (response != null) {
+            bookmark.setContent(response.getContent());
+            LOGGER.info("Content (" + response.getContent().length() + ") = " + response.getContent());
+        }
+
         return bookmarkRepository.save(bookmark);
     }
 
