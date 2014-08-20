@@ -11,7 +11,7 @@ angular.module('mementoApp')
   .controller('LoginCtrl', ['$scope', '$location', function ($scope, $location) {
         $scope.connect = function() {
             if ($scope.login === 'admin' && $scope.password === '1') {
-                $location.path('/bookmarks');
+                $location.path('/dashboard');
             } else {
                 $location.path('/error');
             }

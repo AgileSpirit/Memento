@@ -73,12 +73,16 @@ public class BookmarkServiceImpl implements BookmarkService {
         String url = "https://www.readability.com/api/content/v1/parser";
         url += "?url=" + bookmark.getUrl();
         url += "&token=" + "aadef94fc0e970862ac00067cf09717d111fa788";
-        LOGGER.info("Call Readability API");
-        LOGGER.info("URL = " + url);
+        LOGGER.info("Call Readability API for URL: " + url);
         ReadabilityResponse response = restTemplate.getForObject(url, ReadabilityResponse.class);
         if (response != null) {
+            if (bookmark.getTitle() == null || bookmark.getTitle().trim().isEmpty()) {
+                bookmark.setTitle(response.getTitle());
+            }
+            if (bookmark.getDescription() == null || bookmark.getDescription().trim().isEmpty()) {
+                bookmark.setDescription(response.getExcerpt());
+            }
             bookmark.setContent(response.getContent());
-            LOGGER.info("Content (" + response.getContent().length() + ") = " + response.getContent());
         }
 
         return bookmarkRepository.save(bookmark);

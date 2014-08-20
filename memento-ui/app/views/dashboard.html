@@ -28,7 +28,7 @@
                             <a href="">{{document.title}}</a>
                         </div>
                         <div class="description">
-                            <p>{{getDocumentExcerpt(document)}}</p>
+                            <p ng-bind-html="getDocumentExcerpt(document)"></p>
                             <!--<p>{{document.description}}</p>-->
                         </div>
                     </div>
@@ -37,10 +37,22 @@
         </ul>
     </div>
 </section>
-<section id="bookmark" ng-show="$root.isCurrentView('BOOKMARK')">
-    <div class="scrollable">
-        <h1 class="title">{{bookmark.title}}</h1>
-        <div class="content" ng-bind-html="bookmark.content"></div>
+<section id="bookmark" class="section" ng-show="$root.isCurrentView('BOOKMARK')">
+    <div class="section-wrapper">
+        <div class="actions">
+        </div>
+        <!--
+        <ul class="tabs">
+            <li class="tab active">Content</li>
+            <li class="tab">Settings</li>
+        </ul>
+        -->
+        <div class="scrollable content-wrapper">
+            <div class="title"><h2><a href="{{bookmark.url}}">{{bookmark.title}}</a></h2></div>
+            <div class="url">{{bookmark.url}}</div>
+            <hr>
+            <div class="content" ng-bind-html="bookmark.content"></div>
+        </div>
     </div>
 </section>
 <section id="editor" ng-show="$root.isCurrentView('EDITOR')">

@@ -26,9 +26,8 @@ angular
             .when('/main',      { templateUrl: 'views/main.html',       controller: 'MainCtrl' })
             .when('/error',     { templateUrl: 'views/error.html',      controller: 'ErrorCtrl' })
             .when('/dashboard', { templateUrl: 'views/dashboard.html',  controller: 'DashboardCtrl' })
-            .when('/editor',    { templateUrl: 'views/editor.html',     controller: 'EditorCtrl'
-            })
-            .otherwise({ redirectTo: '/bookmarks' });
+            .when('/editor',    { templateUrl: 'views/editor.html',     controller: 'EditorCtrl' })
+            .otherwise({ redirectTo: '/dashboard' });
 
         /* CORS... */
         /* http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api */
