@@ -1,8 +1,6 @@
 package io.memento.application;
 
-import io.memento.application.responses.FindDocumentsResponse;
-import io.memento.domain.model.Bookmark;
-import io.memento.domain.model.Note;
+import io.memento.application.response.FindDocumentsResponse;
 
 public interface DocumentResource {
 

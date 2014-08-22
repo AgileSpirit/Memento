@@ -1,9 +1,6 @@
 package io.memento.application;
 
-import io.memento.application.responses.BookmarkSearchResponse;
 import io.memento.domain.model.Bookmark;
-
-import java.util.List;
 
 /**
  * Interface for the REST resources that deal with bookmarks.

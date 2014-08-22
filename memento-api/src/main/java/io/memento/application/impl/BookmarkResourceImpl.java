@@ -6,11 +6,13 @@ import io.memento.application.exceptions.BookmarkNotFoundException;
 import io.memento.application.BookmarkResource;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
+import io.memento.infra.readability.ReadabilityResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 
@@ -63,7 +65,26 @@ public class BookmarkResourceImpl implements BookmarkResource {
         // Check Input
         // checkParametersForCreate(bookmark);
 
-        // Process
+        // Retrieve bookmark content
+        // https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=aadef94fc0e970862ac00067cf09717d111fa788
+        // Readability token : aadef94fc0e970862ac00067cf09717d111fa788
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://www.readability.com/api/content/v1/parser";
+        url += "?url=" + bookmark.getUrl();
+        url += "&token=" + "aadef94fc0e970862ac00067cf09717d111fa788";
+        LOGGER.info("Call Readability API for URL: " + url);
+        ReadabilityResponse response = restTemplate.getForObject(url, ReadabilityResponse.class);
+        if (response != null) {
+            if (bookmark.getTitle() == null || bookmark.getTitle().trim().isEmpty()) {
+                bookmark.setTitle(response.getTitle());
+            }
+            if (bookmark.getDescription() == null || bookmark.getDescription().trim().isEmpty()) {
+                bookmark.setDescription(response.getExcerpt());
+            }
+            bookmark.setContent(response.getContent());
+        }
+
+        // Persist
         Bookmark entity = bookmarkService.save(bookmark);
 
         // Check Output

@@ -8,7 +8,7 @@
  * Controller of the mementoUiApp
  */
 angular.module('mementoApp')
-  .controller('DashboardCtrl', ['$rootScope', '$scope', '$window', 'ApiService', function ($rootScope, $scope, $window, apiService) {
+  .controller('DashboardCtrl', ['$rootScope', '$scope', '$window', 'ApiServices', function ($rootScope, $scope, $window, apiService) {
         // Model data
         $scope.searchQuery = '';
         $scope.currentPage = 1;

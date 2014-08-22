@@ -8,7 +8,7 @@
  * Controller of the mementoUiApp
  */
 angular.module('mementoApp')
-    .controller('EditorCtrl', ['$scope', '$location', 'ApiService',
+    .controller('EditorCtrl', ['$scope', '$location', 'ApiServices',
         function ($scope, $location, apiService) {
 
     }]);

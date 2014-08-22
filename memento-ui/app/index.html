@@ -5,6 +5,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <base href="/">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -14,8 +15,14 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+      <script type='text/javascript'>
+          function startApp() {
+              angular.bootstrap(document, ['mementoApp']);
+          }
+      </script>
+
   </head>
-  <body ng-app="mementoApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -74,11 +81,18 @@
         <script src="scripts/controllers/editor.js"></script>
         <script src="scripts/controllers/document-editor.js"></script>
         <!-- Services-->
-        <script src="scripts/services/apiservice.js"></script>
+        <script src="scripts/services/apiservices.js"></script>
         <!-- Directives -->
         <!-- Filters -->
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/controllers/editor.js"></script>
         <!-- endbuild -->
+        <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/auth:plusone.js?onload=startApp';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        </script>
 </body>
 </html>

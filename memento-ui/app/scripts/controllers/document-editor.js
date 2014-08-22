@@ -8,7 +8,7 @@
  * Controller of the mementoUiApp
  */
 angular.module('mementoApp')
-    .controller('DocumentEditorCtrl', ['$rootScope', '$scope', '$location', 'ApiService',
+    .controller('DocumentEditorCtrl', ['$rootScope', '$scope', '$location', 'ApiServices',
         function ($rootScope, $scope, $location, apiService) {
 
         $scope.documentTypes = [

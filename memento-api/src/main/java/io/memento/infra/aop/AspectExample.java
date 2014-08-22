@@ -26,7 +26,7 @@ public class AspectExample {
      */
     @Around("execution(* io.memento.domain.*Service.*(..))")
     public Object inDomainServicesLayer(ProceedingJoinPoint pjp) throws Throwable {
-        LOGGER.debug("Example of AOP usage (before method call)");
+        LOGGER.info("Call service " + pjp.getSignature().getName() + " with arguments: (TODO)");
         return pjp.proceed();
     }
 

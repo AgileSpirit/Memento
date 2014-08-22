@@ -1,6 +1,5 @@
 package io.memento.domain.services;
 
-import io.memento.domain.model.Bookmark;
 import io.memento.domain.model.Document;
 
 import java.util.List;

@@ -3,20 +3,12 @@
         <form role="form">
             <div class="panel panel-default">
                 <div class="panel-heading">Sign-in</div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control"
-                               id="login" placeholder="Login"
-                               ng-required="true"
-                               ng-model="login">
+                <div class="panel-body text-center">
+                    <div id="google-authentication">
+                        <span id="signin">
+                          <span id="myGsignin"></span>
+                        </span>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control"
-                               id="password" placeholder="Password"
-                               ng-required="true"
-                               ng-model="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right" ng-click="connect()">Submit</button>
                 </div>
             </div>
         </form>

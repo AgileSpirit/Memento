@@ -35,8 +35,7 @@ angular
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         /* Remove '#' character in URLs */
-        //$locationProvider.html5Mode(true);
-
+        // $locationProvider.html5Mode(true);
     })
     .run(function($rootScope) {
         $rootScope.currentView = 'DASHBOARD';

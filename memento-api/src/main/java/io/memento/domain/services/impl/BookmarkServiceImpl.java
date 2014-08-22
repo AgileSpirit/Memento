@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.services.BookmarkService;
-import io.memento.domain.services.DocumentService;
 import io.memento.infra.readability.ReadabilityResponse;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.joda.time.DateTime;
@@ -66,25 +65,6 @@ public class BookmarkServiceImpl implements BookmarkService {
     @Timed
     public Bookmark save(Bookmark bookmark) {
         bookmark.setCreationDate(new DateTime());
-
-        // https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=aadef94fc0e970862ac00067cf09717d111fa788
-        // Readability token : aadef94fc0e970862ac00067cf09717d111fa788
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "https://www.readability.com/api/content/v1/parser";
-        url += "?url=" + bookmark.getUrl();
-        url += "&token=" + "aadef94fc0e970862ac00067cf09717d111fa788";
-        LOGGER.info("Call Readability API for URL: " + url);
-        ReadabilityResponse response = restTemplate.getForObject(url, ReadabilityResponse.class);
-        if (response != null) {
-            if (bookmark.getTitle() == null || bookmark.getTitle().trim().isEmpty()) {
-                bookmark.setTitle(response.getTitle());
-            }
-            if (bookmark.getDescription() == null || bookmark.getDescription().trim().isEmpty()) {
-                bookmark.setDescription(response.getExcerpt());
-            }
-            bookmark.setContent(response.getContent());
-        }
-
         return bookmarkRepository.save(bookmark);
     }
 

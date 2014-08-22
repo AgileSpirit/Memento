@@ -3,7 +3,6 @@ package io.memento.domain.services.impl;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
 import io.memento.domain.model.Note;
-import io.memento.domain.services.DocumentService;
 import io.memento.domain.services.NoteService;
 import io.memento.infra.repository.note.NoteRepository;
 import org.joda.time.DateTime;

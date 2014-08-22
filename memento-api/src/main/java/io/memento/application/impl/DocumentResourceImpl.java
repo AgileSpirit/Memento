@@ -1,14 +1,7 @@
 package io.memento.application.impl;
 
 import io.memento.application.DocumentResource;
-import io.memento.application.exceptions.ApplicationException;
-import io.memento.application.exceptions.BadRequestParametersException;
-import io.memento.application.exceptions.BookmarkNotFoundException;
-import io.memento.application.responses.FindDocumentsResponse;
-import io.memento.domain.model.Bookmark;
-import io.memento.domain.model.Document;
-import io.memento.domain.model.Note;
-import io.memento.domain.services.BookmarkService;
+import io.memento.application.response.FindDocumentsResponse;
 import io.memento.domain.services.DocumentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @Controller
 @RequestMapping("/api/documents")
