@@ -3,6 +3,7 @@ package io.memento.application.impl;
 import io.memento.application.request.ConnectionRequest;
 import io.memento.application.response.ConnectionResponse;
 import io.memento.domain.model.Account;
+import io.memento.domain.model.EntityFactory;
 import io.memento.domain.services.AccountService;
 import io.memento.infra.authentication.IdentityProvider;
 import org.assertj.core.api.Assertions;
@@ -33,7 +34,7 @@ public class ConnectionResourceImplTest {
         // Given
         ConnectionRequest request = new ConnectionRequest();
         request.setClient_id("existing_client_id");
-        Account account = Account.newAccount("existing_client_id", IdentityProvider.GOOGLE);
+        Account account = EntityFactory.newAccount("existing_client_id", IdentityProvider.GOOGLE);
         Mockito.when(accountService.getAccount(Mockito.anyString(), Mockito.any(IdentityProvider.class))).thenReturn(account);
         Mockito.when(accountService.save(Mockito.any(Account.class))).thenReturn(account);
 
@@ -53,7 +54,7 @@ public class ConnectionResourceImplTest {
         // Given
         ConnectionRequest request = new ConnectionRequest();
         request.setClient_id("new_client_id");
-        Account account = Account.newAccount("new_client_id", IdentityProvider.GOOGLE);
+        Account account = EntityFactory.newAccount("new_client_id", IdentityProvider.GOOGLE);
         Mockito.when(accountService.getAccount(Mockito.anyString(), Mockito.any(IdentityProvider.class))).thenReturn(null);
         Mockito.when(accountService.save(Mockito.any(Account.class))).thenReturn(account);
 

@@ -4,6 +4,7 @@ import io.memento.application.ConnectionResource;
 import io.memento.application.request.ConnectionRequest;
 import io.memento.application.response.ConnectionResponse;
 import io.memento.domain.model.Account;
+import io.memento.domain.model.EntityFactory;
 import io.memento.domain.services.AccountService;
 import io.memento.infra.authentication.IdentityProvider;
 import org.slf4j.Logger;
@@ -49,7 +50,7 @@ public class ConnectionResourceImpl implements ConnectionResource {
         // 3. If not, create and associate a new user account
         if (account == null) {
             LOGGER.info("There is currently no account associated to client ID '" + clientId + "' and provider '" + provider + "'; create one...");
-            Account newAccount = Account.newAccount(clientId, provider);
+            Account newAccount = EntityFactory.newAccount(clientId, provider);
             account = accountService.save(newAccount);
             LOGGER.info("An account was created for client ID '" + clientId + "' and provider '" + provider + "'");
         } else {

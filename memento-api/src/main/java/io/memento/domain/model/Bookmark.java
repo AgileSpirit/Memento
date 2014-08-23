@@ -14,31 +14,12 @@ public class Bookmark extends Document {
     /*
      * ATTRIBUTES
      */
+
     @Column(nullable = true, length = 1024)
     private String url;
 
     @Column(nullable = true, length = 1024)
     private String description;
-
-    /*
-     * FACTORY METHODS
-     */
-
-    /**
-     * Factory method to instance a bookmark.
-     *
-     * @param url the URL of the bookmark
-     * @param title the title of the bookmark
-     * @param description the description of the bookmark
-     * @return the created bookmark
-     */
-    public static Bookmark create(String title, String description, String url) {
-        Bookmark bookmark = new Bookmark();
-        bookmark.setTitle(title);
-        bookmark.setDescription(description);
-        bookmark.setUrl(url);
-        return bookmark;
-    }
 
     /*
      * GETTERS & SETTERS

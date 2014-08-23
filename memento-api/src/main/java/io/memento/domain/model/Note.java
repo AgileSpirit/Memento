@@ -11,10 +11,4 @@ public class Note extends Document {
         return DocumentType.Values.NOTE;
     }
 
-    public static Note create(String title, String content) {
-        Note note = new Note();
-        note.setTitle(title);
-        note.setContent(content);
-        return note;
-    }
 }

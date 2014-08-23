@@ -38,25 +38,6 @@ public class Account extends PersistableEntity {
     private String lastName;
 
     /*
-     * CONSTRUCTORS
-     */
-
-    public final static Account newAccount(String clientId, IdentityProvider provider) {
-        Account account = new Account();
-        account.clientId = clientId;
-        account.provider = provider;
-        account.setCreationDate(new DateTime());
-        return account;
-    }
-
-    public final static Account newAccount(String clientId, IdentityProvider provider, String firstName, String lastName) {
-        Account account = newAccount(clientId, provider);
-        account.firstName = firstName;
-        account.lastName = lastName;
-        return account;
-    }
-
-    /*
      * GETTERS & SETTERS
      */
 

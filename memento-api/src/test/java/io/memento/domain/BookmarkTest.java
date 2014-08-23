@@ -1,6 +1,9 @@
 package io.memento.domain;
 
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
+import io.memento.domain.model.EntityFactory;
+import io.memento.infra.authentication.IdentityProvider;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -15,9 +18,10 @@ public class BookmarkTest {
         String inputUrl = "http://some-url.fr";
         String inputTitle = "Lorem ipsum";
         String inputDescription = "Lorem ipsum dolor sit amet...";
+        Account account = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE);
 
         // When
-        Bookmark bookmark = Bookmark.create(inputUrl, inputTitle, inputDescription);
+        Bookmark bookmark = EntityFactory.newBookmark(account, inputUrl, inputTitle, inputDescription);
 
         // Then
         Assertions.assertThat(bookmark.getUrl()).isEqualTo(inputUrl);

@@ -1,7 +1,10 @@
 package io.memento.domain.services.impl;
 
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
+import io.memento.domain.model.EntityFactory;
 import io.memento.domain.services.impl.BookmarkServiceImpl;
+import io.memento.infra.authentication.IdentityProvider;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static io.memento.domain.model.Bookmark.create;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
@@ -35,7 +37,8 @@ public class BookmarkServiceImplTest {
     @Test
     public void testSave() {
         // Given
-        Bookmark bookmark = create("http://original.com", "Original bookmark", "Description of my original bookmark");
+        Account account = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE);
+        Bookmark bookmark = EntityFactory.newBookmark(account, "http://original.com", "Original bookmark", "Description of my original bookmark");
         assertThat(bookmark.getCreationDate()).isEqualTo(null);
         when(repository.save(any(Bookmark.class))).thenReturn(bookmark);
 
@@ -74,7 +77,8 @@ public class BookmarkServiceImplTest {
     @Test
     public void testUpdateShouldBeOk() {
         // Given
-        Bookmark bookmark = create("http://original.com", "Original bookmark", "Description of my original bookmark");
+        Account account = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE);
+        Bookmark bookmark = EntityFactory.newBookmark(account, "http://original.com", "Original bookmark", "Description of my original bookmark");
         assertThat(bookmark.getModificationDate()).isEqualTo(null);
         when(repository.save(any(Bookmark.class))).thenReturn(bookmark);
 
