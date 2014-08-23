@@ -52,6 +52,10 @@
         <commons-beanutils.version>20030211.134440</commons-beanutils.version>
         <aspectj.version>1.8.1</aspectj.version>
         <fitnesse.version>20140630</fitnesse.version>
+        <jetty-project.version>9.2.2.v20140723</jetty-project.version>
+        <mongo-java-driver.version>2.12.2</mongo-java-driver.version>
+        <cglib.version>2.2.2</cglib.version>
+        <google-api-client.version>1.19.0</google-api-client.version>
 
         <!-- Plugins version -->
         <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
@@ -68,10 +72,6 @@
         <grunt-maven-plugin.version>1.2.0</grunt-maven-plugin.version>
         <maven-release-plugin.version>2.4.2</maven-release-plugin.version>
         <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
-        <jetty-maven-plugin.version>9.2.1.v20140609</jetty-maven-plugin.version>
-        <mongo-java-driver.version>2.12.2</mongo-java-driver.version>
-        <cglib.version>2.2.2</cglib.version>
-        <google-api-client.version>1.19.0</google-api-client.version>
     </properties>
 
     <!-- ************ -->
@@ -466,6 +466,26 @@
             <version>${velocity.version}</version>
         </dependency>
 
+
+        <!-- ================ -->
+        <!-- HOSTING / HEROKU -->
+        <!-- ================ -->
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty-project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty-project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-annotations</artifactId>
+            <version>${jetty-project.version}</version>
+        </dependency>
     </dependencies>
 
     <!-- ***** -->
@@ -600,7 +620,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty-maven-plugin.version}</version>
+                <version>${jetty-project.version}</version>
             </plugin>
 
             <!-- ========= -->
