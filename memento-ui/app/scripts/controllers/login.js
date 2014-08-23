@@ -8,20 +8,14 @@
  * Controller of the mementoApp
  */
 angular.module('mementoApp')
-  .controller('LoginCtrl', ['$scope', '$location', 'ApiServices', function ($scope, $location, apiServices) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'ApiServices',
+        function ($rootScope, $scope, $location, apiServices) {
 
         // signIn
-        $scope.userProfile = undefined;
-        $scope.hasUserProfile = false;
-        $scope.isSignedIn = false;
+        $rootScope.userProfile = undefined;
+        $rootScope.hasUserProfile = false;
+        $rootScope.isSignedIn = false;
         $scope.immediateFailed = false;
-
-        $scope.signedIn = function(profile) {
-            $scope.isSignedIn = true;
-            $scope.userProfile = profile;
-            $scope.hasUserProfile = true;
-            $location.path('/dashboard');
-        };
 
         $scope.signIn = function(authResult) {
             $scope.$apply(function() {
@@ -31,7 +25,7 @@ angular.module('mementoApp')
 
         $scope.processAuth = function(authResult) {
             $scope.immediateFailed = true;
-            if ($scope.isSignedIn) {
+            if ($rootScope.isSignedIn) {
                 return 0;
             }
             if (authResult['access_token']) {
@@ -53,6 +47,13 @@ angular.module('mementoApp')
                     console.log('Error:' + authResult['error']);
                 }
             }
+        };
+
+        $scope.signedIn = function(profile) {
+            $rootScope.isSignedIn = true;
+            $rootScope.userProfile = profile;
+            $rootScope.hasUserProfile = true;
+            $location.path('/dashboard');
         };
 
         $scope.renderSignIn = function() {
