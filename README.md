@@ -25,3 +25,9 @@ Product Management
 ------------------
 
 See the features board at https://trello.com/b/Ti8eNjr8/memento
+
+URLs
+----
+http://memento-api.herokuapp.com/api/documents/search?q=&o=0&s=100
+http://memento-api.herokuapp.com/monitoring
+http://memento-api.herokuapp.com/monitoring/metrics
