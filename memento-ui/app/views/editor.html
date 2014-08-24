@@ -7,29 +7,35 @@
     </ul>
 
     <div class="form">
-        <!-- Type -->
-        <div class="form-group">
-            <select id="type" class="form-control"
-                    ng-model="selectedType" ng-options="type.label for type in documentTypes"></select>
-        </div>
-
-        <!-- Title -->
-        <div class="form-group">
-            <input id="title" type="title" class="form-control" placeholder="Title"
-                   ng-model="document.title">
-        </div>
-
         <!-- Bookmark -->
         <div class="form-group">
             <input id="url" type="text" class="form-control" placeholder="URL"
                    ng-model="document.url" ng-show="isBookmark()">
         </div>
 
+        <!-- Type -->
+        <!--
+        <div class="form-group">
+            <select id="type" class="form-control"
+                    ng-model="selectedType" ng-options="type.label for type in documentTypes"></select>
+        </div>
+        -->
+
+        <!-- Title -->
+        <!--
+        <div class="form-group">
+            <input id="title" type="title" class="form-control" placeholder="Title"
+                   ng-model="document.title">
+        </div>
+        -->
+
         <!-- Description -->
+        <!--
         <div class="form-group">
             <textarea id="description" class="form-control" rows="3" placeholder="Description"
                       ng-model="document.description" ng-show="isBookmark()"></textarea>
         </div>
+        -->
 
         <!-- Note -->
         <div class="form-group">

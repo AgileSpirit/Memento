@@ -1,5 +1,9 @@
 Memento
 =======
+
+Workstation
+-----------
+
 Prerequesites :
 * Maven 3
 * JDK 1.7
@@ -17,4 +21,7 @@ Build & run presentation side (memento-ui):
 > cd memento-ui
 > grunt serve
 
-.
+Product Management
+------------------
+
+See the features board at https://trello.com/b/Ti8eNjr8/memento

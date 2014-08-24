@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import io.memento.domain.model.Bookmark;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.joda.time.DateTime;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * This is an example of Database Testing (this might be considering as Integration Test)
  */
 @DatabaseSetup(value = "classpath:dbunit/dataset/BookmarkRepositoryTest.xml")
+@Ignore
 public class BookmarkRepositoryTest extends RepositoryTest {
 
     @Inject
