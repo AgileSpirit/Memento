@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,18 +64,21 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Timed
+    @Transactional
     public Bookmark save(Bookmark bookmark) {
         bookmark.setCreationDate(new DateTime());
         return bookmarkRepository.save(bookmark);
     }
 
     @Timed
+    @Transactional
     public Bookmark update(Bookmark bookmark) {
         bookmark.setModificationDate(new DateTime());
         return bookmarkRepository.save(bookmark);
     }
 
     @Timed
+    @Transactional
     public void delete(Long id) {
         bookmarkRepository.delete(id);
     }

@@ -9,10 +9,12 @@ import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Named
+@Transactional
 public class NoteServiceImpl implements NoteService {
 
     @Inject
@@ -45,18 +47,21 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Timed
+    @Transactional
     public Note save(Note note) {
         note.setCreationDate(new DateTime());
         return noteRepository.save(note);
     }
 
     @Timed
+    @Transactional
     public Note update(Note note) {
         note.setModificationDate(new DateTime());
         return noteRepository.save(note);
     }
 
     @Timed
+    @Transactional
     public void delete(Long id) {
         noteRepository.delete(id);
     }

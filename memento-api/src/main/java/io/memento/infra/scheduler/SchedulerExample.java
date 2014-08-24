@@ -25,7 +25,7 @@ public class SchedulerExample {
     /*
      * Retrieve, count and display the whole bookmarks every minute.
      */
-    @Scheduled(cron = "0 */1 * * * *")
+    // @Scheduled(cron = "0 */1 * * * *")
     public void countAndDisplayBookmarks() {
         List<Bookmark> bookmarks = Lists.newArrayList(bookmarkRepository.findAll());
         if (bookmarks.isEmpty()) {

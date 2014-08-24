@@ -26,7 +26,7 @@ public class HttpActivitySupervisor {
         metricRegistry.register(getClass().getCanonicalName() + ".HttpActivity", histogram);
     }
 
-    @Scheduled(cron = "*/5 * * * * *")
+//    @Scheduled(cron = "*/5 * * * * *")
     public void simulateHttpActivity() {
         // Generate a random value
         int lower = 1;

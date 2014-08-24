@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ import java.util.List;
  * Date:    20/08/2014
  */
 @Named
+@Transactional
 public class AccountServiceImpl implements AccountService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);
@@ -37,18 +39,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional
     public Account save(Account account) {
         account.setCreationDate(new DateTime());
         return accountRepository.save(account);
     }
 
     @Override
+    @Transactional
     public Account update(Account account) {
         account.setModificationDate(new DateTime());
         return accountRepository.save(account);
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         accountRepository.delete(id);
     }

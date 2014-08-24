@@ -7,6 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 
 import javax.sql.DataSource;
+import java.net.URISyntaxException;
 
 @Configuration
 @PropertySource("classpath:environment/application-integration.properties")
@@ -14,7 +15,7 @@ import javax.sql.DataSource;
 public class IntegrationConfig implements EnvironmentConfig {
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws URISyntaxException {
         final JndiDataSourceLookup dsLookup = new JndiDataSourceLookup();
         dsLookup.setResourceRef(true);
         DataSource dataSource = dsLookup.getDataSource("java:comp/env/jdbc/mydb");

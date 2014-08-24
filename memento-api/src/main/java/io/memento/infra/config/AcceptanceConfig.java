@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
+import java.net.URISyntaxException;
 
 @Configuration
 @PropertySource("classpath:environment/application-acceptance.properties")
@@ -14,7 +15,7 @@ import javax.sql.DataSource;
 public class AcceptanceConfig implements EnvironmentConfig {
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws URISyntaxException {
         return new ComboPooledDataSource();
     }
 

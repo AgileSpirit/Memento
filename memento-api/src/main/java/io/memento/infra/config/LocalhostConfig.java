@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
+import java.net.URISyntaxException;
 
 @Configuration
 @PropertySource("classpath:environment/application-localhost.properties")
@@ -19,7 +20,7 @@ public class LocalhostConfig implements EnvironmentConfig {
     private Environment env;
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws URISyntaxException {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(env.getProperty("hibernate.connection.driver_class"));
         ds.setUrl(env.getProperty("hibernate.connection.url"));

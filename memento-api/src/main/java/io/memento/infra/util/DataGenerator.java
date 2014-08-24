@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Named
@@ -30,6 +31,7 @@ public class DataGenerator {
 
     private static Logger logger = LoggerFactory.getLogger(DataGenerator.class);
 
+    @Transactional
     public void generateData() {
         generateAccounts();
     }
