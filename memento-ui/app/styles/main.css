@@ -437,5 +437,6 @@ ol, ul {
 /*}*/
 
 .content-wrapper {
-    padding: 20px;
+    padding: 20px 60px;
+    text-align: justify;
 }

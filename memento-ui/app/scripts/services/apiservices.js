@@ -9,8 +9,8 @@
  */
 angular.module('mementoApp')
   .service('ApiServices', function ApiServices($resource) {
-        //var apiBaseUrl = 'http://localhost:8080/api';
-        var apiBaseUrl = 'http://memento-api.herokuapp.com/api/';
+        var apiBaseUrl = 'http://localhost:8080/api';
+        // var apiBaseUrl = 'http://memento-api.herokuapp.com/api/';
 
         return $resource(apiBaseUrl, {}, {
 

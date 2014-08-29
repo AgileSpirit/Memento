@@ -3,7 +3,7 @@ package io.memento.application.impl;
 import io.memento.application.AccountResource;
 import io.memento.domain.model.Account;
 import io.memento.domain.services.AccountService;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

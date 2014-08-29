@@ -5,7 +5,7 @@ import io.memento.application.response.ConnectionResponse;
 import io.memento.domain.model.Account;
 import io.memento.domain.model.EntityFactory;
 import io.memento.domain.services.AccountService;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,10 +1,10 @@
 package io.memento.domain.services.impl;
 
-import static io.memento.infra.authentication.IdentityProvider.GOOGLE;
-import static io.memento.infra.authentication.IdentityProvider.TWITTER;
+import static io.memento.domain.model.IdentityProvider.GOOGLE;
+
 import io.memento.domain.model.Account;
 import io.memento.domain.model.EntityFactory;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.user.AccountRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

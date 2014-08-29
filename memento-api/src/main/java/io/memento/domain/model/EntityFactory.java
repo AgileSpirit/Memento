@@ -1,6 +1,5 @@
 package io.memento.domain.model;
 
-import io.memento.infra.authentication.IdentityProvider;
 import org.joda.time.DateTime;
 
 /**

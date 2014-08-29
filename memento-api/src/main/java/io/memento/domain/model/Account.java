@@ -1,8 +1,5 @@
 package io.memento.domain.model;
 
-import io.memento.infra.authentication.IdentityProvider;
-import org.joda.time.DateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

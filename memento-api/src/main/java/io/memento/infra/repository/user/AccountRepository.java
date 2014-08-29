@@ -1,8 +1,7 @@
 package io.memento.infra.repository.user;
 
 import io.memento.domain.model.Account;
-import io.memento.domain.model.Note;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

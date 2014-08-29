@@ -1,4 +1,4 @@
-package io.memento.infra.authentication;
+package io.memento.infra.security.oauth;
 
 /**
  * Project: Memento
@@ -6,7 +6,7 @@ package io.memento.infra.authentication;
  * Email:   jbuget@agile-spirit.fr
  * Date:    21/08/2014
  */
-public class GoogleAuthenticationTokenData {
+public class GoogleOAuthTokenData {
 
     public static String kind = "memento#tokendata";
 

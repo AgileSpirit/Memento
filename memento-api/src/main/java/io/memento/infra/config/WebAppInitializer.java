@@ -3,7 +3,6 @@ package io.memento.infra.config;
 import com.codahale.metrics.servlets.AdminServlet;
 import io.memento.infra.monitoring.metrics.HealthCheckServletContextListener;
 import io.memento.infra.monitoring.metrics.MetricsServletContextListener;
-import io.memento.infra.util.CorsFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.WebApplicationInitializer;
@@ -40,7 +39,8 @@ public class WebAppInitializer implements WebApplicationInitializer {
          * This listener is required for ServletListener to be aware of Spring context (ex: Metrics servlets)
          */
         container.addListener(new ContextLoaderListener(dispatcherContext));
-        container.addFilter("CorsFilter", CorsFilter.class).addMappingForUrlPatterns(null, false, "/*");
+//        container.addFilter("CorsFilter", CorsFilter.class).addMappingForUrlPatterns(null, false, "/*");
+//        container.addFilter("AuthenticationFilter", AuthenticationFilter.class).addMappingForUrlPatterns(null, false, "/*");
     }
 
     private void addMetricsSupport(ServletContext container) {

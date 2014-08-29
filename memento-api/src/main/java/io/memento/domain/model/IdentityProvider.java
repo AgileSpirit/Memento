@@ -1,4 +1,4 @@
-package io.memento.infra.authentication;
+package io.memento.domain.model;
 
 /**
  * Project: Memento

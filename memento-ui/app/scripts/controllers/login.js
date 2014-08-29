@@ -38,7 +38,7 @@ angular.module('mementoApp')
                 $scope.immediateFailed = false;
                 // Successfully authorized, create session
                 apiServices.login(request, (function(response) {
-                    $scope.signedIn(response.data);
+                    $scope.signedIn(response);
                 }));
             } else if (authResult['error']) {
                 if (authResult['error'] == 'immediate_failed') {
@@ -49,10 +49,12 @@ angular.module('mementoApp')
             }
         };
 
-        $scope.signedIn = function(profile) {
+        $scope.signedIn = function(connectionResponse) {
             $rootScope.isSignedIn = true;
-            $rootScope.userProfile = profile;
+            $rootScope.userProfile = connectionResponse.account;
+            $rootScope.accessToken = connectionResponse.accessToken;
             $rootScope.hasUserProfile = true;
+
             $location.path('/dashboard');
         };
 

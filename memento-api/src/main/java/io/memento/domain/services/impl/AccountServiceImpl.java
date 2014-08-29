@@ -2,7 +2,7 @@ package io.memento.domain.services.impl;
 
 import io.memento.domain.model.Account;
 import io.memento.domain.services.AccountService;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.user.AccountRepository;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;

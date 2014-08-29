@@ -33,6 +33,9 @@ angular
         /* http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api */
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        // $httpProvider.defaults.headers.common['Access-Control-Request-Headers'] = $rootScope.accessToken;
+
+        $httpProvider.interceptors.push('OAuthWebInterceptor');
 
         /* Remove '#' character in URLs */
         // $locationProvider.html5Mode(true);

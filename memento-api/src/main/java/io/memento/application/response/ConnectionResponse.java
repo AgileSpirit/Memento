@@ -10,7 +10,17 @@ import io.memento.domain.model.Account;
  */
 public class ConnectionResponse {
 
+    private String accessToken;
+
     private Account account;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
     public Account getAccount() {
         return account;

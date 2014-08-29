@@ -1,8 +1,6 @@
-Memento
-=======
+# Memento
 
-Workstation
------------
+## Workstation
 
 Prerequesites :
 * Maven 3
@@ -21,13 +19,24 @@ Build & run presentation side (memento-ui):
 > cd memento-ui
 > grunt serve
 
-Product Management
-------------------
+## Delivery
+
+### Memento-API
+
+> cp -rf ~/Memento/memento-api/* ~/tmp/heroku/memento-api
+> git add --all
+> git ci -a -m
+> git push
+
+
+### Memento-UI
+
+## Product Management
 
 See the features board at https://trello.com/b/Ti8eNjr8/memento
 
-URLs
-----
+## URLs
+
 http://memento-api.herokuapp.com/api/documents/search?q=&o=0&s=100
 http://memento-api.herokuapp.com/monitoring
 http://memento-api.herokuapp.com/monitoring/metrics

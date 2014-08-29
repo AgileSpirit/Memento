@@ -5,7 +5,7 @@ import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.model.EntityFactory;
 import io.memento.domain.model.Note;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import io.memento.infra.repository.note.NoteRepository;
 import io.memento.infra.repository.user.AccountRepository;

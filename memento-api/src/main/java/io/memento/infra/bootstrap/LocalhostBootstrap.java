@@ -29,7 +29,7 @@ public class LocalhostBootstrap extends ApplicationBootstrap {
 
     @Override
     void bootstrap() {
-        dataGenerator.generateData();
+//        dataGenerator.generateData();
 
         /* Uncomment the instruction below to display the populated bookmarks */
         // dataGenerator.retrieveAndDisplayAllData();

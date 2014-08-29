@@ -1,7 +1,7 @@
 package io.memento.domain.services;
 
 import io.memento.domain.model.Account;
-import io.memento.infra.authentication.IdentityProvider;
+import io.memento.domain.model.IdentityProvider;
 
 import java.util.List;
 
