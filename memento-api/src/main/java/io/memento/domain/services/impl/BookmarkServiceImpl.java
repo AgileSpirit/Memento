@@ -2,7 +2,10 @@ package io.memento.domain.services.impl;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
+import io.memento.application.exceptions.Http500InternalServerError;
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
+import io.memento.domain.model.EntityFactory;
 import io.memento.domain.services.BookmarkService;
 import io.memento.infra.readability.ReadabilityResponse;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
@@ -92,4 +95,37 @@ public class BookmarkServiceImpl implements BookmarkService {
         }
     }
 
+    @Override
+    public Bookmark populateBookmark(Bookmark bookmark) {
+        // https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=aadef94fc0e970862ac00067cf09717d111fa788
+        // Readability token : aadef94fc0e970862ac00067cf09717d111fa788
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://www.readability.com/api/content/v1/parser";
+        url += "?url=" + bookmark.getUrl();
+        url += "&token=" + "aadef94fc0e970862ac00067cf09717d111fa788";
+
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Call Readability API with URL: " + url);
+        }
+
+        ReadabilityResponse response = restTemplate.getForObject(url, ReadabilityResponse.class);
+        if (response == null) {
+            LOGGER.error("The response from Readability API was null");
+            throw new Http500InternalServerError();
+        } else {
+            if (bookmark.getTitle() == null || bookmark.getTitle().trim().isEmpty()) {
+                bookmark.setTitle(response.getTitle());
+            }
+            if (bookmark.getDescription() == null || bookmark.getDescription().trim().isEmpty()) {
+                bookmark.setDescription(response.getExcerpt());
+            }
+            bookmark.setContent(response.getContent());
+        }
+        return bookmark;
+    }
+
+    @Override
+    public Bookmark findBookmarkByAccountAndUrl(Account account, String url) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

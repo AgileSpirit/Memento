@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
-import java.util.UUID;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Project: Memento
@@ -64,45 +65,19 @@ public class ConnectionResourceImpl implements ConnectionResource {
         }
 
         // Generate OAuth access_token
-        String accessToken = generateAccessToken();
-        OAuthTokenData token = buildTokenData(accessToken);
-        storeTokenData(token);
+        OAuthTokenData tokenData = tokenStore.generateAndStoreTokenForAccount(account);
 
         // Build response
         ConnectionResponse response = new ConnectionResponse();
         response.setAccount(account);
-        response.setAccessToken(accessToken);
+        response.setAccessToken(tokenData.getAccess_token());
         return response;
-    }
-
-    private String generateAccessToken() {
-        LOGGER.debug("Generating an access_token");
-        String accessToken = UUID.randomUUID().toString();
-        LOGGER.debug("The access_token " + accessToken + " was generated");
-        return accessToken;
-    }
-
-    private OAuthTokenData buildTokenData(String accessToken) {
-        LOGGER.debug("Building token data from access_token");
-        OAuthTokenData token = new OAuthTokenData();
-        token.setAccess_token(accessToken);
-        // TODO set token expiration
-        LOGGER.debug("A token data was generated for access_token " + accessToken);
-        return token;
-    }
-
-    private OAuthTokenData storeTokenData(OAuthTokenData token) {
-        LOGGER.debug("Storing the token data (access_token = " + token.getAccess_token() + ")");
-        OAuthTokenData tokenData = tokenStore.add(token);
-        LOGGER.debug("The token data was stored");
-        return tokenData;
     }
 
     @Override
     @RequestMapping(value ="/logout", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public ConnectionResponse logout(@RequestBody ConnectionRequest request) {
-        // TODO
+    public HttpServletResponse logout(HttpServletRequest request) {
         return null;
     }
 }

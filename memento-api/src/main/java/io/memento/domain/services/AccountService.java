@@ -14,7 +14,7 @@ import java.util.List;
 public interface AccountService {
 
     List<Account> list();
-    
+
     Account getAccount(String clientId, IdentityProvider provider);
 
     Account save(Account account);

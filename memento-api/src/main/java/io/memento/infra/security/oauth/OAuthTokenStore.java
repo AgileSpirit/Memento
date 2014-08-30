@@ -1,5 +1,7 @@
 package io.memento.infra.security.oauth;
 
+import io.memento.domain.model.Account;
+
 /**
  * Project: Memento
  * User:    Jérémy Buget
@@ -8,10 +10,15 @@ package io.memento.infra.security.oauth;
  */
 public interface OAuthTokenStore {
 
-    OAuthTokenData get(String accessToken);
-
-    OAuthTokenData add(OAuthTokenData token);
-
     void remove(String accessToken);
 
+    void remove(OAuthTokenData tokenData);
+
+    OAuthTokenData getTokenData(String accessToken);
+
+    Account getAccount(String accessToken);
+
+    Account getAccount(OAuthTokenData tokenData);
+
+    OAuthTokenData generateAndStoreTokenForAccount(Account account);
 }

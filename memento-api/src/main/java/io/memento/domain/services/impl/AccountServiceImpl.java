@@ -4,6 +4,8 @@ import io.memento.domain.model.Account;
 import io.memento.domain.services.AccountService;
 import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.user.AccountRepository;
+import io.memento.infra.security.oauth.OAuthTokenData;
+import io.memento.infra.security.oauth.OAuthTokenStore;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

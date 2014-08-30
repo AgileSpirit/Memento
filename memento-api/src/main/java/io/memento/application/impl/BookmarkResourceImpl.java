@@ -4,9 +4,14 @@ import io.memento.application.exceptions.ApplicationException;
 import io.memento.application.exceptions.BadRequestParametersException;
 import io.memento.application.exceptions.BookmarkNotFoundException;
 import io.memento.application.BookmarkResource;
+import io.memento.application.exceptions.Http500InternalServerError;
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
+import io.memento.domain.services.AccountService;
 import io.memento.domain.services.BookmarkService;
 import io.memento.infra.readability.ReadabilityResponse;
+import io.memento.infra.security.HttpHeadersAccessor;
+import io.memento.infra.security.oauth.OAuthTokenStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,10 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/api/bookmarks")
-public class BookmarkResourceImpl implements BookmarkResource {
+public class BookmarkResourceImpl extends HttpHeadersAccessor implements BookmarkResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BookmarkResourceImpl.class);
 
@@ -58,37 +64,32 @@ public class BookmarkResourceImpl implements BookmarkResource {
     @Override
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public Bookmark saveBookmark(@RequestBody Bookmark bookmark) {
+    public Bookmark saveBookmark(@RequestBody Bookmark bookmark, HttpServletRequest request) {
         // Log
-        LOGGER.info("saveBookmark([bookmark.id] " + bookmark.getId() + " )");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("saveBookmark([bookmark.id] " + bookmark.getId() + " )");
+        }
 
         // Check Input
         // checkParametersForCreate(bookmark);
 
-        // Retrieve bookmark content
-        // https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=aadef94fc0e970862ac00067cf09717d111fa788
-        // Readability token : aadef94fc0e970862ac00067cf09717d111fa788
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "https://www.readability.com/api/content/v1/parser";
-        url += "?url=" + bookmark.getUrl();
-        url += "&token=" + "aadef94fc0e970862ac00067cf09717d111fa788";
-        LOGGER.info("Call Readability API for URL: " + url);
-        ReadabilityResponse response = restTemplate.getForObject(url, ReadabilityResponse.class);
-        if (response != null) {
-            if (bookmark.getTitle() == null || bookmark.getTitle().trim().isEmpty()) {
-                bookmark.setTitle(response.getTitle());
-            }
-            if (bookmark.getDescription() == null || bookmark.getDescription().trim().isEmpty()) {
-                bookmark.setDescription(response.getExcerpt());
-            }
-            bookmark.setContent(response.getContent());
+        // Check if the user has already added the bookmark in order to prevent doubles
+        Account account = getAccount(request);
+        boolean isBookmarkAlreadyAdded = isBookmarkAlreadyAddedForAccount(bookmark, account);
+
+        if (isBookmarkAlreadyAdded) {
+            LOGGER.error("The bookmark on page " + bookmark.getUrl() + " was already added");
+            throw new ApplicationException();
         }
 
-        // Persist
+        // Retrieve bookmark content
+        bookmarkService.populateBookmark(bookmark);
+
         Bookmark entity = bookmarkService.save(bookmark);
 
         // Check Output
         if (entity == null) {
+            LOGGER.error("An error occurred during bookmark saving");
             throw new ApplicationException();
         }
 
@@ -96,12 +97,19 @@ public class BookmarkResourceImpl implements BookmarkResource {
         return entity;
     }
 
+    private boolean isBookmarkAlreadyAddedForAccount(Bookmark bookmark, Account account) {
+        Bookmark entity = bookmarkService.findBookmarkByAccountAndUrl(account, bookmark.getUrl());
+        return (entity != null);
+    }
+
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Bookmark updateBookmark(@PathVariable Long id, @RequestBody Bookmark bookmark) {
         // Log
-        LOGGER.info("updateBookmark(" + bookmark.getId() + " )");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Update bookmark with ID " + bookmark.getId());
+        }
 
         // Check Input
         // checkParametersForUpdate(id, bookmark);
@@ -127,7 +135,9 @@ public class BookmarkResourceImpl implements BookmarkResource {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeBookmark(@PathVariable Long id) {
         // Log
-        LOGGER.info("removeBookmark(" + id + ")");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Remove bookmark with ID " + id);
+        }
 
         // Check input
         if (id == null) {

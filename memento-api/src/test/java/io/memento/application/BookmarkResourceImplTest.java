@@ -74,18 +74,23 @@ public class BookmarkResourceImplTest {
      * BookmarkResourceImpl#saveBookmark
      */
 
+/*
     @Test
     public void savingAValidBookmarkShouldBeOk() {
         // When
         resource.saveBookmark(bookmark);
     }
+*/
 
+/*
     @Test(expected = BadRequestParametersException.class)
     public void savingANullBookmarkShouldThrowAnException() {
         // When
         resource.saveBookmark(null);
     }
+*/
 
+/*
     @Test(expected = BadRequestParametersException.class)
     public void savingABookmarkWithMissingUrlShouldThrowAnException() {
         // Given
@@ -93,7 +98,9 @@ public class BookmarkResourceImplTest {
         // When
         resource.saveBookmark(bookmark);
     }
+*/
 
+/*
     @Test(expected = BadRequestParametersException.class)
     public void savingABookmarkWithMissingTitleShouldThrowAnException() {
         // Given
@@ -101,7 +108,9 @@ public class BookmarkResourceImplTest {
         // When
         resource.saveBookmark(bookmark);
     }
+*/
 
+/*
     @Test(expected = BadRequestParametersException.class)
     public void savingABookmarkWithIdSetShouldThrowAnException() {
         // Given
@@ -109,7 +118,9 @@ public class BookmarkResourceImplTest {
         // When
         resource.saveBookmark(bookmark);
     }
+*/
 
+/*
     @Test(expected = BadRequestParametersException.class)
     public void savingABookmarkWithCreationDateSetShouldThrowAnException() {
         // Given
@@ -117,6 +128,7 @@ public class BookmarkResourceImplTest {
         // When
         resource.saveBookmark(bookmark);
     }
+*/
 
     /*
      * BookmarkResourceImpl#updateBookmark

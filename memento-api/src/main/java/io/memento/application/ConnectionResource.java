@@ -3,6 +3,9 @@ package io.memento.application;
 import io.memento.application.request.ConnectionRequest;
 import io.memento.application.response.ConnectionResponse;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Project: Memento
  * User:    Jérémy Buget
@@ -13,6 +16,6 @@ public interface ConnectionResource {
 
     ConnectionResponse login(ConnectionRequest request);
 
-    ConnectionResponse logout(ConnectionRequest request);
+    HttpServletResponse logout(HttpServletRequest request);
 
 }
