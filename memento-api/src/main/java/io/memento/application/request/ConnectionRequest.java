@@ -1,8 +1,5 @@
 package io.memento.application.request;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleOAuthConstants;
-
 /**
  * Project: Memento
  * User:    Jérémy Buget
@@ -45,50 +42,35 @@ public class ConnectionRequest {
      * ATTRIBUTES
      */
 
-    private String access_token;
+    private String googleTokenId;
+//    private String access_token;
 //    private String authuser;
-    private String client_id;
+//    private String client_id;
 //    private String code;
 //    private String cookie_policy;
 //    private String expires_at;
-//  private String expires_in;
-//  private String g_user_cookie_policy;
-    private String id_token;
+//    private String expires_in;
+//    private String g_user_cookie_policy;
+//    private String id_token;
 //    private String issued_at;
-//  private String num_sessions;
-//  private String prompt;
-//  private String response_type;
-//  private String scope;
-//  private String session_state;
-//  private String state;
-//  private String status;
-//  private String token_type;
+//    private String num_sessions;
+//    private String prompt;
+//    private String response_type;
+//    private String scope;
+//    private String session_state;
+//    private String state;
+//    private String status;
+//    private String token_type;
 
     /*
      * GETTERS & SETTERS
      */
 
-    public String getAccess_token() {
-        return access_token;
+    public String getGoogleTokenId() {
+        return googleTokenId;
     }
 
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
-    }
-
-    public String getClient_id() {
-        return client_id;
-    }
-
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
-    }
-
-    public String getId_token() {
-        return id_token;
-    }
-
-    public void setId_token(String id_token) {
-        this.id_token = id_token;
+    public void setGoogleTokenId(String googleTokenId) {
+        this.googleTokenId = googleTokenId;
     }
 }

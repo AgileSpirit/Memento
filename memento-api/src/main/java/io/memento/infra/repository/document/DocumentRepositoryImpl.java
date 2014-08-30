@@ -1,5 +1,6 @@
 package io.memento.infra.repository.document;
 
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Document;
 
 import javax.inject.Named;
@@ -18,39 +19,45 @@ public class DocumentRepositoryImpl implements DocumentRepositoryCustom {
     private EntityManager em;
 
     @Override
-    public long count(String pattern) {
+    public long count(String pattern, Account account) {
         String expression = "" +
-                "select d.id from Document d " +
-                "where d.url like :pattern " +
-                "or d.title like :pattern " +
-                "or d.description like :pattern " +
-                "order by d.creationDate desc";
+                "SELECT d.id FROM Document d " +
+                "WHERE d.owner = :account " +
+                "AND (d.url LIKE :pattern " +
+                "OR d.title LIKE :pattern " +
+                "OR d.description LIKE :pattern) " +
+                "ORDER BY d.creationDate DESC";
         TypedQuery<Long> query = em.createQuery(expression, Long.class);
         query.setParameter("pattern", "%" + pattern + "%");
+        query.setParameter("account", account);
         return query.getResultList().size();
     }
 
     @Override
-    public Iterable<Document> findMementos(int offset, int size) {
+    public Iterable<Document> findMementos(int offset, int size, Account account) {
         String expression = "" +
-                "select d from Document d " +
-                "order by d.creationDate desc";
+                "SELECT d FROM Document d " +
+                "WHERE d.owner = :account " +
+                "ORDER BY d.creationDate DESC";
         TypedQuery<Document> query = em.createQuery(expression, Document.class);
+        query.setParameter("account", account);
         query.setFirstResult(offset);
         query.setMaxResults(size);
         return query.getResultList();
     }
 
     @Override
-    public Iterable<Document> findMementos(String pattern, int offset, int size) {
+    public Iterable<Document> findMementos(String pattern, int offset, int size, Account account) {
         String expression = "" +
-                "select d from Document d " +
-                "where d.url like :pattern " +
-                "or d.title like :pattern " +
-                "or d.description like :pattern " +
-                "order by d.creationDate desc";
+                "SELECT d FROM Document d " +
+                "WHERE d.owner = :account " +
+                "AND (d.url LIKE :pattern " +
+                "OR d.title LIKE :pattern " +
+                "OR d.description LIKE :pattern) " +
+                "ORDER BY d.creationDate DESC";
         TypedQuery<Document> query = em.createQuery(expression, Document.class);
         query.setParameter("pattern", "%" + pattern + "%");
+        query.setParameter("account", account);
         query.setFirstResult(offset);
         query.setMaxResults(size);
         return query.getResultList();

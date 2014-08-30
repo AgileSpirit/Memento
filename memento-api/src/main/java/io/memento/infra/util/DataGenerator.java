@@ -5,7 +5,6 @@ import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.model.EntityFactory;
 import io.memento.domain.model.Note;
-import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import io.memento.infra.repository.note.NoteRepository;
 import io.memento.infra.repository.user.AccountRepository;
@@ -42,12 +41,12 @@ public class DataGenerator {
 
     private void generateAccounts() {
         List<Account> accounts = Lists.newArrayList();
-        accounts.add(EntityFactory.newAccount("0123-4567-89AB", IdentityProvider.GOOGLE));
-        accounts.add(EntityFactory.newAccount("CDEF-GHIJ-KLMN", IdentityProvider.FACEBOOK));
-        accounts.add(EntityFactory.newAccount("OPQR-STUV-WXYZ", IdentityProvider.TWITTER));
+        accounts.add(EntityFactory.newAccount("0123-4567-89AB"));
+        accounts.add(EntityFactory.newAccount("CDEF-GHIJ-KLMN"));
+        accounts.add(EntityFactory.newAccount("OPQR-STUV-WXYZ"));
         accountRepository.save(accounts);
 
-        Account owner = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE, "John", "Doe");
+        Account owner = EntityFactory.newAccount("jdoe", "John", "Doe");
         owner = accountRepository.save(owner);
 
         generateNotes(owner);

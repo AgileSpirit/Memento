@@ -30,9 +30,7 @@ angular.module('mementoApp')
             }
             if (authResult['access_token']) {
                 var request = {
-                    'access_token' : authResult['access_token'],
-                    'client_id' : authResult['client_id'],
-                    'id_token' : authResult['id_token']
+                    'googleTokenId' : authResult['id_token']
                 };
 
                 $scope.immediateFailed = false;

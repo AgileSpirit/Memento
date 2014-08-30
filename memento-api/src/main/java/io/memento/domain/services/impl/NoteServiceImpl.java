@@ -2,6 +2,7 @@ package io.memento.domain.services.impl;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Note;
 import io.memento.domain.services.NoteService;
 import io.memento.infra.repository.note.NoteRepository;
@@ -34,7 +35,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public List<Note> find(String query, int offset, int size) {
+    public List<Note> find(String query, int offset, int size, Account account) {
         List<Note> notes = new ArrayList<>();
         if (query == null || query.trim().isEmpty()) {
             Iterable<Note> data = noteRepository.findNotes(offset, size);
@@ -46,6 +47,7 @@ public class NoteServiceImpl implements NoteService {
         return notes;
     }
 
+    @Override
     @Timed
     @Transactional
     public Note save(Note note) {
@@ -53,6 +55,7 @@ public class NoteServiceImpl implements NoteService {
         return noteRepository.save(note);
     }
 
+    @Override
     @Timed
     @Transactional
     public Note update(Note note) {
@@ -60,6 +63,7 @@ public class NoteServiceImpl implements NoteService {
         return noteRepository.save(note);
     }
 
+    @Override
     @Timed
     @Transactional
     public void delete(Long id) {
@@ -67,7 +71,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public Long count(String query) {
+    public Long count(String query, Account account) {
         if (query == null || query.trim().isEmpty()) {
             return noteRepository.count();
         } else {

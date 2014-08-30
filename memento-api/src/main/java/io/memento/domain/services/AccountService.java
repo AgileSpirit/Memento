@@ -1,7 +1,6 @@
 package io.memento.domain.services;
 
 import io.memento.domain.model.Account;
-import io.memento.domain.model.IdentityProvider;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface AccountService {
 
     List<Account> list();
 
-    Account getAccount(String clientId, IdentityProvider provider);
+    Account getAccount(String clientId);
 
     Account save(Account account);
 

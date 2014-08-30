@@ -19,18 +19,22 @@ public class Account extends PersistableEntity {
      */
 
     /**
-     * The ID of the user provided by the identity provider (Google, Facebook, etc.)
+     * The user ID generated during the very first connection login. According to JWT specifications, it is in fact the
+     * concatenation of the 'sub' (or Subject, a.k.a. the owner unique ID on provider system) and 'iss' (or Issuer,
+     * a.k.a. the provider system name) fields with a '-' separator ; Ex: "117024677747885647904-accounts.google.com"
      */
     @Column(nullable = false)
-    private String clientId;
+    private String userId;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private IdentityProvider provider;
-
+    /**
+     * The user first name
+     */
     @Column(nullable = true)
     private String firstName;
 
+    /**
+     * The user last name
+     */
     @Column(nullable = true)
     private String lastName;
 
@@ -38,12 +42,12 @@ public class Account extends PersistableEntity {
      * GETTERS & SETTERS
      */
 
-    public String getClientId() {
-        return clientId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setUserId(String clientId) {
+        this.userId = clientId;
     }
 
     public String getFirstName() {
@@ -62,11 +66,4 @@ public class Account extends PersistableEntity {
         this.lastName = lastName;
     }
 
-    public IdentityProvider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(IdentityProvider provider) {
-        this.provider = provider;
-    }
 }

@@ -1,10 +1,7 @@
 package io.memento.domain.services.impl;
 
-import static io.memento.domain.model.IdentityProvider.GOOGLE;
-
 import io.memento.domain.model.Account;
 import io.memento.domain.model.EntityFactory;
-import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.user.AccountRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -32,10 +29,10 @@ public class AccountServiceImplTest {
     @Test
     public void testGetAccount() throws Exception {
         // Given
-        Mockito.when(accountRepository.findByClientIdAndProvider(Mockito.anyString(), Mockito.any(IdentityProvider.class))).thenReturn(EntityFactory.newAccount("user@test.com", GOOGLE));
+        Mockito.when(accountRepository.findByUserId(Mockito.anyString())).thenReturn(EntityFactory.newAccount("user@test.com"));
 
         // When
-        Account actual = userService.getAccount("1234-ABCD", GOOGLE);
+        Account actual = userService.getAccount("1234-ABCD");
 
         // Then
         Assertions.assertThat(actual).isNotNull();
@@ -44,7 +41,7 @@ public class AccountServiceImplTest {
     @Test
     public void testSave() throws Exception {
         // Given
-        Account account = EntityFactory.newAccount("user@test.com", GOOGLE);
+        Account account = EntityFactory.newAccount("user@test.com");
         account.setCreationDate(null);
         Mockito.when(accountRepository.save(account)).thenReturn(account);
 
@@ -59,7 +56,7 @@ public class AccountServiceImplTest {
     @Test
     public void testUpdate() throws Exception {
         // Given
-        Account account = EntityFactory.newAccount("user@test.com", GOOGLE);
+        Account account = EntityFactory.newAccount("user@test.com");
         account.setModificationDate(null);
         Mockito.when(accountRepository.save(account)).thenReturn(account);
 

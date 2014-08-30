@@ -5,7 +5,8 @@ import io.memento.domain.model.Bookmark;
 
 public interface BookmarkService extends DocumentService<Bookmark> {
 
-    Bookmark populateBookmark(Bookmark bookmark);
+    boolean isBookmarkAlreadyAdded(String url, Account account);
 
-    Bookmark findBookmarkByAccountAndUrl(Account account, String url);
+    Bookmark populateBookmark(Bookmark bookmark, Account account);
+
 }

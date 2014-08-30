@@ -56,6 +56,9 @@
         <mongo-java-driver.version>2.12.2</mongo-java-driver.version>
         <cglib.version>2.2.2</cglib.version>
         <google-api-client.version>1.19.0</google-api-client.version>
+        <postgresql.version>9.3-1102-jdbc41</postgresql.version>
+        <commons-dbcp2.version>2.0.1</commons-dbcp2.version>
+        <jsontoken.version>1.1</jsontoken.version>
 
         <!-- Plugins version -->
         <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
@@ -72,8 +75,7 @@
         <grunt-maven-plugin.version>1.2.0</grunt-maven-plugin.version>
         <maven-release-plugin.version>2.4.2</maven-release-plugin.version>
         <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
-        <postgresql.version>9.3-1102-jdbc41</postgresql.version>
-        <commons-dbcp2.version>2.0.1</commons-dbcp2.version>
+        <google-oauth-client.version>1.19.0</google-oauth-client.version>
     </properties>
 
     <!-- ************ -->
@@ -261,7 +263,16 @@
             <artifactId>google-api-client</artifactId>
             <version>${google-api-client.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.googlecode.jsontoken</groupId>
+            <artifactId>jsontoken</artifactId>
+            <version>${jsontoken.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+            <version>${google-oauth-client.version}</version>
+        </dependency>
 
         <!-- ============ -->
         <!-- JDBC DRIVERS -->

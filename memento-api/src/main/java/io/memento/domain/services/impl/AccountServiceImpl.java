@@ -2,10 +2,7 @@ package io.memento.domain.services.impl;
 
 import io.memento.domain.model.Account;
 import io.memento.domain.services.AccountService;
-import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.user.AccountRepository;
-import io.memento.infra.security.oauth.OAuthTokenData;
-import io.memento.infra.security.oauth.OAuthTokenStore;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +33,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account getAccount(String clientId, IdentityProvider provider) {
-        return accountRepository.findByClientIdAndProvider(clientId, provider);
+    public Account getAccount(String userId) {
+        return accountRepository.findByUserId(userId);
     }
 
     @Override

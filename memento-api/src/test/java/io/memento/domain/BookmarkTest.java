@@ -3,7 +3,6 @@ package io.memento.domain;
 import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.model.EntityFactory;
-import io.memento.domain.model.IdentityProvider;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -18,7 +17,7 @@ public class BookmarkTest {
         String inputUrl = "http://some-url.fr";
         String inputTitle = "Lorem ipsum";
         String inputDescription = "Lorem ipsum dolor sit amet...";
-        Account account = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE);
+        Account account = EntityFactory.newAccount("jdoe");
 
         // When
         Bookmark bookmark = EntityFactory.newBookmark(account, inputUrl, inputTitle, inputDescription);

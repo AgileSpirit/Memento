@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import io.memento.application.exceptions.Http500InternalServerError;
 import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
-import io.memento.domain.model.EntityFactory;
 import io.memento.domain.services.BookmarkService;
 import io.memento.infra.readability.ReadabilityResponse;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
@@ -54,7 +53,7 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public List<Bookmark> find(String query, int offset, int size) {
+    public List<Bookmark> find(String query, int offset, int size, Account account) {
         List<Bookmark> bookmarks = new ArrayList<>();
         if (query == null || query.trim().isEmpty()) {
             Iterable<Bookmark> data = bookmarkRepository.findBookmarks(offset, size);
@@ -66,6 +65,7 @@ public class BookmarkServiceImpl implements BookmarkService {
         return bookmarks;
     }
 
+    @Override
     @Timed
     @Transactional
     public Bookmark save(Bookmark bookmark) {
@@ -73,6 +73,7 @@ public class BookmarkServiceImpl implements BookmarkService {
         return bookmarkRepository.save(bookmark);
     }
 
+    @Override
     @Timed
     @Transactional
     public Bookmark update(Bookmark bookmark) {
@@ -80,6 +81,7 @@ public class BookmarkServiceImpl implements BookmarkService {
         return bookmarkRepository.save(bookmark);
     }
 
+    @Override
     @Timed
     @Transactional
     public void delete(Long id) {
@@ -87,7 +89,7 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public Long count(String query) {
+    public Long count(String query, Account account) {
         if (query == null || query.trim().isEmpty()) {
             return bookmarkRepository.count();
         } else {
@@ -96,7 +98,13 @@ public class BookmarkServiceImpl implements BookmarkService {
     }
 
     @Override
-    public Bookmark populateBookmark(Bookmark bookmark) {
+    public boolean isBookmarkAlreadyAdded(String url, Account account) {
+        // TODO
+        return false;
+    }
+
+    @Override
+    public Bookmark populateBookmark(Bookmark bookmark, Account account) {
         // https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=aadef94fc0e970862ac00067cf09717d111fa788
         // Readability token : aadef94fc0e970862ac00067cf09717d111fa788
         RestTemplate restTemplate = new RestTemplate();
@@ -121,11 +129,9 @@ public class BookmarkServiceImpl implements BookmarkService {
             }
             bookmark.setContent(response.getContent());
         }
+        bookmark.setOwner(account);
+
         return bookmark;
     }
 
-    @Override
-    public Bookmark findBookmarkByAccountAndUrl(Account account, String url) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

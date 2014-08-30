@@ -1,13 +1,13 @@
 package io.memento.domain.services.impl;
 
 import com.google.common.collect.Lists;
+import io.memento.domain.model.Account;
 import io.memento.domain.model.Document;
 import io.memento.domain.services.DocumentService;
 import io.memento.infra.repository.document.DocumentRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,13 +33,13 @@ public class DocumentServiceImpl implements DocumentService<Document> {
     }
 
     @Override
-    public List<Document> find(String query, int offset, int size) {
+    public List<Document> find(String query, int offset, int size, Account account) {
         List<Document> documents = new ArrayList<>();
         if (query == null || query.trim().isEmpty()) {
-            Iterable<Document> data = documentRepository.findMementos(offset, size);
+            Iterable<Document> data = documentRepository.findMementos(offset, size, account);
             documents = Lists.newArrayList(data);
         } else {
-            Iterable<Document> data = documentRepository.findMementos(query, offset, size);
+            Iterable<Document> data = documentRepository.findMementos(query, offset, size, account);
             documents = Lists.newArrayList(data);
         }
         return documents;
@@ -51,11 +51,11 @@ public class DocumentServiceImpl implements DocumentService<Document> {
     }
 
     @Override
-    public Long count(String query) {
+    public Long count(String query, Account account) {
         if (query == null || query.trim().isEmpty()) {
             return documentRepository.count();
         } else {
-            return documentRepository.count(query);
+            return documentRepository.count(query, account);
         }
     }
 }

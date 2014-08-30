@@ -5,7 +5,6 @@ import io.memento.infra.security.HttpHeadersAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -41,10 +40,6 @@ public class OAuthWebFilter extends HttpHeadersAccessor implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug(request.getRequestURI());
-        }
-
         if ("OPTIONS".equals(request.getMethod()) || request.getRequestURI().equals("/api/connection/login")) {
             /*
              * In case of preflight (OPTIONS method) or connection requests, we do nothing.
@@ -53,8 +48,7 @@ public class OAuthWebFilter extends HttpHeadersAccessor implements Filter {
         } else {
             String accessToken = extractAccessToken(request);
             OAuthTokenData token = retrieveTokenData(accessToken);
-            boolean isTokenValid = verifyTokenData(token);
-            if (!isTokenValid) {
+            if (!isTokenValid(token)) {
                 tokenStore.remove(accessToken);
                 LOGGER.error("A token was found but is no more valid ; then remove it from OAuth store and throw Exception.");
                 throw new Http500InternalServerError();
@@ -69,7 +63,7 @@ public class OAuthWebFilter extends HttpHeadersAccessor implements Filter {
      * @param tokenData
      * @return
      */
-    private boolean verifyTokenData(OAuthTokenData tokenData) {
+    private boolean isTokenValid(OAuthTokenData tokenData) {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("Verify the token data");
         }

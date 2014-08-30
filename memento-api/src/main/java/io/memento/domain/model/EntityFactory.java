@@ -14,16 +14,15 @@ public class EntityFactory {
      * Account
      */
 
-    public static Account newAccount(String clientId, IdentityProvider provider) {
+    public static Account newAccount(String clientId) {
         Account account = new Account();
-        account.setClientId(clientId);
-        account.setProvider(provider);
+        account.setUserId(clientId);
         account.setCreationDate(new DateTime());
         return account;
     }
 
-    public static Account newAccount(String clientId, IdentityProvider provider, String firstName, String lastName) {
-        Account account = newAccount(clientId, provider);
+    public static Account newAccount(String clientId, String firstName, String lastName) {
+        Account account = newAccount(clientId);
         account.setFirstName(firstName);
         account.setLastName(lastName);
         return account;

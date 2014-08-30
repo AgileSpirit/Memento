@@ -4,20 +4,15 @@ import io.memento.application.exceptions.ApplicationException;
 import io.memento.application.exceptions.BadRequestParametersException;
 import io.memento.application.exceptions.BookmarkNotFoundException;
 import io.memento.application.BookmarkResource;
-import io.memento.application.exceptions.Http500InternalServerError;
 import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
-import io.memento.domain.services.AccountService;
 import io.memento.domain.services.BookmarkService;
-import io.memento.infra.readability.ReadabilityResponse;
 import io.memento.infra.security.HttpHeadersAccessor;
-import io.memento.infra.security.oauth.OAuthTokenStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -65,41 +60,29 @@ public class BookmarkResourceImpl extends HttpHeadersAccessor implements Bookmar
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Bookmark saveBookmark(@RequestBody Bookmark bookmark, HttpServletRequest request) {
-        // Log
         if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("saveBookmark([bookmark.id] " + bookmark.getId() + " )");
+            LOGGER.debug("Saving bookmark for URL '" + bookmark.getUrl() + "'");
         }
 
-        // Check Input
-        // checkParametersForCreate(bookmark);
+        checkParametersForCreate(bookmark);
 
-        // Check if the user has already added the bookmark in order to prevent doubles
         Account account = getAccount(request);
-        boolean isBookmarkAlreadyAdded = isBookmarkAlreadyAddedForAccount(bookmark, account);
 
+        boolean isBookmarkAlreadyAdded = bookmarkService.isBookmarkAlreadyAdded(bookmark.getUrl(), account);
         if (isBookmarkAlreadyAdded) {
-            LOGGER.error("The bookmark on page " + bookmark.getUrl() + " was already added");
+            LOGGER.warn("The bookmark on page " + bookmark.getUrl() + " was already added");
             throw new ApplicationException();
         }
 
-        // Retrieve bookmark content
-        bookmarkService.populateBookmark(bookmark);
+        bookmark = bookmarkService.populateBookmark(bookmark, account);
 
-        Bookmark entity = bookmarkService.save(bookmark);
+        bookmark = bookmarkService.save(bookmark);
 
-        // Check Output
-        if (entity == null) {
-            LOGGER.error("An error occurred during bookmark saving");
-            throw new ApplicationException();
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("The bookmark was saved for account " + account.getId() + " and its ID is " + bookmark.getId());
         }
 
-        // Return
-        return entity;
-    }
-
-    private boolean isBookmarkAlreadyAddedForAccount(Bookmark bookmark, Account account) {
-        Bookmark entity = bookmarkService.findBookmarkByAccountAndUrl(account, bookmark.getUrl());
-        return (entity != null);
+        return bookmark;
     }
 
     @Override
@@ -167,6 +150,7 @@ public class BookmarkResourceImpl extends HttpHeadersAccessor implements Bookmar
     }
 
     private void checkParametersForCreate(Bookmark bookmark) {
+/*
         checkBookmarkForCreateOrUpdate(bookmark);
 
         if (bookmark.getId() != null) {
@@ -175,9 +159,11 @@ public class BookmarkResourceImpl extends HttpHeadersAccessor implements Bookmar
         if (bookmark.getCreationDate() != null) {
             throw new BadRequestParametersException("Given bookmark's creation date must be null");
         }
+*/
     }
 
     private void checkParametersForUpdate(Long id, Bookmark bookmark) {
+/*
         checkBookmarkForCreateOrUpdate(bookmark);
 
         if (id == null) {
@@ -192,6 +178,7 @@ public class BookmarkResourceImpl extends HttpHeadersAccessor implements Bookmar
         if (bookmark.getCreationDate() == null) {
             throw new BadRequestParametersException("Given bookmark's creation date must be null");
         }
+*/
     }
 
 }

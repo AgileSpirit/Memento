@@ -3,7 +3,6 @@ package io.memento.domain.services.impl;
 import io.memento.domain.model.Account;
 import io.memento.domain.model.Bookmark;
 import io.memento.domain.model.EntityFactory;
-import io.memento.domain.model.IdentityProvider;
 import io.memento.infra.repository.bookmark.BookmarkRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +35,7 @@ public class BookmarkServiceImplTest {
     @Test
     public void testSave() {
         // Given
-        Account account = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE);
+        Account account = EntityFactory.newAccount("jdoe");
         Bookmark bookmark = EntityFactory.newBookmark(account, "http://original.com", "Original bookmark", "Description of my original bookmark");
         assertThat(bookmark.getCreationDate()).isEqualTo(null);
         when(repository.save(any(Bookmark.class))).thenReturn(bookmark);
@@ -76,7 +75,7 @@ public class BookmarkServiceImplTest {
     @Test
     public void testUpdateShouldBeOk() {
         // Given
-        Account account = EntityFactory.newAccount("jdoe", IdentityProvider.GOOGLE);
+        Account account = EntityFactory.newAccount("jdoe");
         Bookmark bookmark = EntityFactory.newBookmark(account, "http://original.com", "Original bookmark", "Description of my original bookmark");
         assertThat(bookmark.getModificationDate()).isEqualTo(null);
         when(repository.save(any(Bookmark.class))).thenReturn(bookmark);

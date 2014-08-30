@@ -3,7 +3,6 @@ package io.memento.application.impl;
 import io.memento.application.AccountResource;
 import io.memento.domain.model.Account;
 import io.memento.domain.services.AccountService;
-import io.memento.domain.model.IdentityProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,7 @@ public class AccountResourceImpl implements AccountResource {
     @RequestMapping(value = "/{cid}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public Account getAccount(@PathVariable("cid") String clientId) {
-        Account account = accountService.getAccount(clientId, IdentityProvider.GOOGLE);
+        Account account = accountService.getAccount(clientId);
         return account;
     }
 
